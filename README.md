@@ -7,7 +7,7 @@ required for a specific use case. Using a single compiled PHP script instead of 
 What it actually does
 ---------------------
 
-This tool listens for each file that is autloaded, creates a list of files, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
+This tool listens for each file that is autloaded, creates a list of files, traverses the parsed PHP file using [PHPParser](https://github.com/nikic/PHP-Parser) and any visitors of a Config object, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
 
 Notice
 ------
@@ -42,6 +42,8 @@ Writing a config file
 ---------------------
 
 Creating a PHP based configuration file is fairly simple. Just include the vendor/classpreloader/classpreloader/src/ClassPreloader/ClassLoader.php file and call the `ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassLoader` object and register the passed in object's autoloader using `$loader->register()`. It is important to register the `ClassLoader` autoloader after all other autoloaders are registered.
+
+An array or `\ClassPreloader\Config` must be returned from the config file. You can attach custom node visitors if you need to perform any sort of translation on each matching file before writing it to the output.
 
 ```php
 <?php
