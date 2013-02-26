@@ -5,7 +5,7 @@
         "symfony/filesystem": ">2.0",
         "symfony/finder": ">2.0",
         "nikic/php-parser": "*"
-	},
+    },
 
     "minimum-stability": "beta",
 

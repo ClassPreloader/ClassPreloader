@@ -11,7 +11,7 @@ Installation
 
 Add the ClassPreloader as a dev dependency to your composer.json file:
 
-```
+```javascript
 {
     "require-dev": {
         "classpreloader\classpreloader": "1.0.0"
@@ -35,7 +35,7 @@ Writing a config file
 
 Creating a PHP based configuration file is fairly simple. Just include the vendor/classpreloader/classpreloader/src/ClassPreloader/ClassLoader.php file and call the `ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassLoader` object and register the passed in object's autoloader using `$loader->register()`.
 
-````
+```php
 <?php
 // Here's an example of creating a preloader for using Amazon DynamoDB and the
 // AWS SDK for PHP 2.
