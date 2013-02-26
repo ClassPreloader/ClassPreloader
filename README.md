@@ -33,7 +33,7 @@ You use the classpreloader.php script with a few command line flags to generate 
 Writing a config file
 ---------------------
 
-Creating a PHP based configuration file is fairly simple. Just include the vendor/classpreloader/classpreloader/src/ClassPreloader/ClassLoader.php file and call the `ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassLoader` object and register the passed in object's autoloader using `$loader->register()`.
+Creating a PHP based configuration file is fairly simple. Just include the vendor/classpreloader/classpreloader/src/ClassPreloader/ClassLoader.php file and call the `ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassLoader` object and register the passed in object's autoloader using `$loader->register()`. It is important to register the `ClassLoader` autoloader after all other autoloaders are registered.
 
 ```php
 <?php
@@ -62,7 +62,7 @@ $config = ClassLoader::getIncludes(function(ClassLoader $loader) {
 // Add a regex filter that requires that a class does not match the filter
 // $config->setExclusiveFilter('/Foo/');
 
-return $config
+return $config;
 ```
 
 You would then run the classpreloader.php script and pass in the full path to the above PHP script.
