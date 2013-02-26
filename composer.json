@@ -1,0 +1,19 @@
+{
+    "require":{
+        "php": ">=5.3.3",
+        "symfony/console": ">2.0",
+        "symfony/filesystem": ">2.0",
+        "symfony/finder": ">2.0",
+        "nikic/php-parser": "*"
+	},
+
+    "minimum-stability": "beta",
+
+    "autoload": {
+        "psr-0": {
+            "ClassPreloader": "src/"
+        }
+    },
+
+    "bin": ["classpreloader.php"]
+}
