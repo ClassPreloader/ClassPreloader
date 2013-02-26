@@ -4,6 +4,14 @@ Class Preloader for PHP
 This tool is used to generate a single PHP script containing all of the classes
 required for a specific use case. Using a single compiled PHP script instead of relying on autoloading can help to improve the performance of specific use cases. For example, if your application executes the same bootstrap code on every request, then you could generate a preloader (the compiled output of this tool) to reduce the cost of autoloading the required classes over and over.
 
+What it actually does
+---------------------
+
+This tool listens for each file that is autloaded, creates a list of files, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
+
+Notice
+------
+
 This tool should only be used for specific use cases. There is a tradeoff between preloading classes and autoloading classes. The point at which it is no longer beneficial to generate a preloader is application specific. You'll need to perform your own benchmarks to determine if this tool will speed up your application.
 
 Installation
@@ -57,10 +65,10 @@ $config = ClassLoader::getIncludes(function(ClassLoader $loader) {
 });
 
 // Add a regex filter that requires all classes to match the regex
-// $config->setInclusiveFilter('/Foo/');
+// $config->addInclusiveFilter('/Foo/');
 
 // Add a regex filter that requires that a class does not match the filter
-// $config->setExclusiveFilter('/Foo/');
+// $config->addExclusiveFilter('/Foo/');
 
 return $config;
 ```
