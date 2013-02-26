@@ -38,6 +38,7 @@ class PreCompileCommand extends Command
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'CSV of filenames to load, or the path to a PHP script that returns an array of file names')
             ->addOption('output', null, InputOption::VALUE_REQUIRED)
             ->addOption('fix_dir', true, InputOption::VALUE_REQUIRED, 'Convert __DIR__ constants to the original location of a file')
+            ->addOption('strip_comments', false, InputOption::VALUE_REQUIRED, 'Set to 1 to strip comments from each source file')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command iterates over each script, normalizes
 the file to be wrapped in namespaces, and combines each file into a single PHP
@@ -78,7 +79,12 @@ EOF
             throw new \RuntimeException("Cannot open {$file} for reading");
         }
 
-        $content = file_get_contents($file);
+        if ($this->input->getOption('strip_comments')) {
+            $content = php_strip_whitespace($file);
+        } else {
+            $content = file_get_contents($file);
+        }
+
         $stmts = $this->getTraverser()
             ->traverseFile($this->parser->parse($content), $file);
         $pretty = $this->printer->prettyPrint($stmts);

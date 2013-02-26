@@ -17,11 +17,11 @@ This tool should only be used for specific use cases. There is a tradeoff betwee
 Installation
 ------------
 
-Add the ClassPreloader as a dev dependency to your composer.json file:
+Add the ClassPreloader as a dependency to your composer.json file:
 
 ```javascript
 {
-    "require-dev": {
+    "require": {
         "classpreloader\classpreloader": "1.0.0"
     }
 }
@@ -80,3 +80,21 @@ You would then run the classpreloader.php script and pass in the full path to th
 `php classpreloader.php --config="/path/to/the_example.php" --output="/tmp/preloader.php"`
 
 The above command will create a file in /tmp/preloader.php that contains every file that was autoloaded while running the snippet of code in the anonymous function. You would generate this file and include it in your production script.
+
+Automating the process with Composer
+------------------------------------
+
+You can automate the process of creating preloaders using Composer's script functionality. For example, if you wanted to automatically create a preloader each time the AWS SDK for PHP is installed, you could define a script like the following in your composer.json file:
+
+```javascript
+{
+    "require": {
+        "classpreloader\classpreloader": "1.0.0"
+    },
+    "scripts": {
+        "post-autoload-dump": "php classpreloader.php  --config=/path/to/the_example.php  --output=/path/to/preload.php"
+    }
+}
+```
+
+Using the above composer.json file, each time the project's autoloader is recreated using the install or update command, the classpreloader.php file will be executed. This script would generate a preload.php containing the classes required to run the previously demonstrated "the_example.php" configuration file.
