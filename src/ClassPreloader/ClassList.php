@@ -11,12 +11,12 @@ class ClassList
      * @var ClassNode The head node of the list
      */
     protected $head;
-    
+
     /**
      * @var ClassNode The current node of the list
      */
     protected $current;
-    
+
     public function __construct()
     {
         $this->clear();
@@ -30,7 +30,7 @@ class ClassList
         $this->head = new ClassNode(null);
         $this->current = $this->head;
     }
-    
+
     /**
      * Traverse to the next node in the list
      */
@@ -45,8 +45,8 @@ class ClassList
     }
 
     /**
-     * Insert a value at the current position in the list. Any current set 
-     * value at this position will be pushed back in the list after the new 
+     * Insert a value at the current position in the list. Any currently set
+     * value at this position will be pushed back in the list after the new
      * value
      *
      * @param mixed $value Value to insert
@@ -67,7 +67,7 @@ class ClassList
             }
         }
     }
-    
+
     /**
      * Traverse the ClassList and return a list of classes
      *
@@ -81,7 +81,7 @@ class ClassList
             $classes[] = $current->value;
             $current = $current->next;
         }
-        
+
         return array_filter($classes);
     }
 }

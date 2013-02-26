@@ -67,7 +67,7 @@ class Config implements \IteratorAggregate
 
         return $filenames;
     }
-    
+
     /**
      * Get an iterator for the filenames
      *

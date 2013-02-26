@@ -11,17 +11,17 @@ class ClassNode
      * @var ClassNode|null Next node pointer
      */
     public $next;
-    
+
     /**
      * @var ClassNode|null Previous node pointer
      */
     public $prev;
-    
+
     /**
      * @var mixed Value of the ClassNode
      */
     public $value;
-    
+
     /**
      * Create a new ClassNode
      *

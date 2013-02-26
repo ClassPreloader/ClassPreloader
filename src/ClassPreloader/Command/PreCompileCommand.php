@@ -3,11 +3,9 @@
 namespace ClassPreloader\Command;
 
 use ClassPreloader\Config;
-use ClassPreloader\Parser\DependencyHeap;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\NodeTraverser;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -132,18 +130,19 @@ EOF
         if (!file_exists($config)) {
             throw new \InvalidArgumentException(sprintf('Configuration file "%s" does not exist.', $config));
         }
-        
+
         $result = require $config;
-        
+
         if ($result instanceof Config) {
             foreach ($result->getVisitors() as $visitor) {
                 $this->getTraverser()->addVisitor($visitor);
             }
+
             return $result;
         } elseif (is_array($result)) {
             return $result;
         }
-        
+
         throw new \InvalidArgumentException(
             'Config must return an array of filenames or a Config object'
         );

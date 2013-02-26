@@ -22,10 +22,10 @@ abstract class AbstractNodeVisitor extends \PHPParser_NodeVisitorAbstract
     public function setFilename($filename)
     {
         $this->filename = $filename;
-        
+
         return $this;
     }
-    
+
     /**
      * Get the full path to the current file being parsed
      *
@@ -35,7 +35,7 @@ abstract class AbstractNodeVisitor extends \PHPParser_NodeVisitorAbstract
     {
         return $this->filename;
     }
-    
+
     /**
      * Get the directory of the current file being parsed
      *

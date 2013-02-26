@@ -37,7 +37,7 @@ class ClassLoader
         $loader = new self();
         call_user_func($func, $loader);
         $loader->unregister();
-        
+
         $config = new Config();
         foreach ($loader->getFilenames() as $file) {
             $config->addFile($file);
@@ -78,11 +78,12 @@ class ClassLoader
             }
             $this->classList->push($class);
             if (call_user_func($func, $class)) {
-                $this->classList->next();
-               break;
+                break;
             }
         }
-        
+
+        $this->classList->next();
+
         return true;
     }
 

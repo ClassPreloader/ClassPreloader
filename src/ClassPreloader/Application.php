@@ -25,7 +25,7 @@ class Application extends BaseApplication
         foreach ($finder as $file) {
             $filename = $file->getPathName();
             $pos = strpos($filename, '/ClassPreloader/') + strlen('/ClassPreloader/');
-            $class = __NAMESPACE__ . '\\' 
+            $class = __NAMESPACE__ . '\\'
                 . substr(str_replace('/', '\\', substr($filename, $pos)), 0, -4);
             $this->add(new $class());
         }
