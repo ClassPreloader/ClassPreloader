@@ -22,7 +22,7 @@ Add the ClassPreloader as a dependency to your composer.json file:
 ```javascript
 {
     "require": {
-        "classpreloader\classpreloader": "1.0.0"
+        "classpreloader/classpreloader": "1.0.0"
     }
 }
 ```
