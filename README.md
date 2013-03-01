@@ -89,7 +89,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```javascript
 {
     "require": {
-        "classpreloader\classpreloader": "1.0.0"
+        "classpreloader/classpreloader": "1.0.0"
     },
     "scripts": {
         "post-autoload-dump": "php classpreloader.php  --config=/path/to/the_example.php  --output=/path/to/preload.php"
