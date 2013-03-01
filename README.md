@@ -7,7 +7,7 @@ required for a specific use case. Using a single compiled PHP script instead of 
 What it actually does
 ---------------------
 
-This tool listens for each file that is autloaded, creates a list of files, traverses the parsed PHP file using [PHPParser](https://github.com/nikic/PHP-Parser) and any visitors of a Config object, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
+This tool listens for each file that is autoloaded, creates a list of files, traverses the parsed PHP file using [PHPParser](https://github.com/nikic/PHP-Parser) and any visitors of a Config object, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
 
 Notice
 ------
