@@ -23,6 +23,9 @@ Add the ClassPreloader as a dependency to your composer.json file:
 {
     "require": {
         "classpreloader/classpreloader": "1.0.0"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
 ```
@@ -30,7 +33,7 @@ Add the ClassPreloader as a dependency to your composer.json file:
 Using the tool
 --------------
 
-You use the classpreloader.php script with a few command line flags to generate a preloader.
+You use the bin/classpreloader.php compile command with a few command line flags to generate a preloader.
 
 `--config`: A CSV containing a list of files to combine into a classmap, or the full path to a PHP script that returns an array of classes or a `\ClassPreloader\Config` object.
 
@@ -77,7 +80,7 @@ return $config;
 
 You would then run the classpreloader.php script and pass in the full path to the above PHP script.
 
-`php classpreloader.php --config="/path/to/the_example.php" --output="/tmp/preloader.php"`
+`php bin/classpreloader.php compile --config="/path/to/the_example.php" --output="/tmp/preloader.php"`
 
 The above command will create a file in /tmp/preloader.php that contains every file that was autoloaded while running the snippet of code in the anonymous function. You would generate this file and include it in your production script.
 
@@ -92,7 +95,10 @@ You can automate the process of creating preloaders using Composer's script func
         "classpreloader\classpreloader": "1.0.0"
     },
     "scripts": {
-        "post-autoload-dump": "php classpreloader.php  --config=/path/to/the_example.php  --output=/path/to/preload.php"
+        "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
 ```
