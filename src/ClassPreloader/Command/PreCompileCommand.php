@@ -94,6 +94,10 @@ EOF
             $pretty = substr($pretty, 7);
         }
 
+        // Replace __DIR__/__FILE__ with real path
+        $pretty = str_replace('__DIR__', sprintf('\'%s\'', dirname($file)), $pretty);
+        $pretty = str_replace('__FILE__', sprintf('\'%s\'', $file), $pretty);
+
         return $pretty;
     }
 
