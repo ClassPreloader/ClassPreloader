@@ -5,6 +5,7 @@ namespace ClassPreloader\Command;
 use ClassPreloader\Config;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\NodeTraverser;
+use ClassPreloader\Parser\FileVisitor;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
