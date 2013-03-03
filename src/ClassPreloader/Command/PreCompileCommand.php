@@ -98,6 +98,11 @@ EOF
             $pretty = substr($pretty, 7);
         }
 
+        // Add a wrapping namespace if needed
+        if (false === strpos($pretty, 'namespace ')) {
+            $pretty = "namespace {\n" . $pretty . "\n}\n";
+        }
+
         return $pretty;
     }
 
