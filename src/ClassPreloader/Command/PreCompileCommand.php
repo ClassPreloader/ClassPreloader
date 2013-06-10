@@ -4,6 +4,7 @@ namespace ClassPreloader\Command;
 
 use ClassPreloader\Config;
 use ClassPreloader\Parser\DirVisitor;
+use ClassPreloader\Parser\NamespaceWrappingVisitor;
 use ClassPreloader\Parser\NodeTraverser;
 use ClassPreloader\Parser\FileVisitor;
 use Symfony\Component\Filesystem\Filesystem;
@@ -58,6 +59,8 @@ EOF
     {
         if (!$this->traverser) {
             $this->traverser = new NodeTraverser();
+            $this->traverser->addVisitor(new NamespaceWrappingVisitor());
+
             if ($this->input->getOption('fix_dir')) {
                 $this->traverser->addVisitor(new DirVisitor($file));
             }
@@ -96,11 +99,6 @@ EOF
         // Remove the open PHP tag
         if (substr($pretty, 6) == "<?php\n") {
             $pretty = substr($pretty, 7);
-        }
-
-        // Add a wrapping namespace if needed
-        if (false === strpos($pretty, 'namespace ')) {
-            $pretty = "namespace {\n" . $pretty . "\n}\n";
         }
 
         return $pretty;
