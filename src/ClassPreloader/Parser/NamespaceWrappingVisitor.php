@@ -23,6 +23,7 @@ class NamespaceWrappingVisitor extends AbstractNodeVisitor
 
         // Wrap code in empty namespace
         if ($this->namespaceDepth === 0) {
+            ++$this->namespaceDepth;
             return new \PHPParser_Node_Stmt_Namespace(
                 new \PHPParser_Node_Name(""),
                 array($node)
