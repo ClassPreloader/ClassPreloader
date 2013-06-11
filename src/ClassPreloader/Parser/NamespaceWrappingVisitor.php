@@ -35,7 +35,7 @@ class NamespaceWrappingVisitor extends AbstractNodeVisitor
      */
     public function leaveNode(\PHPParser_Node $node) {
         if ($node instanceof \PHPParser_Node_Stmt_Namespace) {
-            --$this->inNamespace;
+            --$this->namespaceDepth;
         }
     }
 }
