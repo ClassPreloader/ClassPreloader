@@ -96,10 +96,28 @@ class ClassLoader
     {
         $files = array();
         foreach ($this->classList->getClasses() as $class) {
-            $r = new \ReflectionClass($class);
-            $files[] = $r->getFileName();
-        }
+            if (interface_exists($class)) {
+                continue;
+            }
+            if (class_exists($class)) {
+                $r = new \ReflectionClass($class);
 
+                // Push interfaces files
+                $interfaces = $r->getInterfaces();
+                if (!empty($interfaces)) {
+                    foreach ($interfaces as $inf) {
+                        $inf_fname = $inf->getFileName();
+                        if (!empty($inf_fname) && !in_array($inf_fname, $files)) {
+                            $files[] = $inf_fname;
+                        }
+                    }
+                }
+
+                // Push class files
+                $files[] = $r->getFileName();
+
+            }
+        }
         return $files;
     }
 }
