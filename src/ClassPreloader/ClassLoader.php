@@ -96,28 +96,17 @@ class ClassLoader
     {
         $files = array();
         foreach ($this->classList->getClasses() as $class) {
-            if (interface_exists($class)) {
-                continue;
-            }
-            if (class_exists($class)) {
-                $r = new \ReflectionClass($class);
-
-                // Push interfaces files
-                $interfaces = $r->getInterfaces();
-                if (!empty($interfaces)) {
-                    foreach ($interfaces as $inf) {
-                        $inf_fname = $inf->getFileName();
-                        if (!empty($inf_fname) && !in_array($inf_fname, $files)) {
-                            $files[] = $inf_fname;
-                        }
-                    }
+            // Push interfaces before classes if not already loaded
+            $r = new \ReflectionClass($class);
+            foreach ($r->getInterfaces() as $inf) {
+                $name = $inf->getFileName();
+                if ($name && !in_array($name, $files)) {
+                    $files[] = $name;
                 }
-
-                // Push class files
-                $files[] = $r->getFileName();
-
             }
+            $files[] = $r->getFileName();
         }
+
         return $files;
     }
 }
