@@ -72,10 +72,10 @@ EOF
     /**
      * Get a pretty printed string of code from a file while applying visitors
      *
-     * @param string        $file      Name of the file to get code from
-     * @param NodeTraverser $traverser Node traverser
+     * @param string $file Name of the file to get code from
      *
      * @return string
+     * @throws \RuntimeException
      */
     protected function getCode($file)
     {
@@ -126,6 +126,7 @@ EOF
      * @param mixed $config Configuration option
      *
      * @return array
+     * @throws \InvalidArgumentException
      */
     protected function getFileList($config)
     {
@@ -167,6 +168,8 @@ EOF
      * Prepare the output file and directory
      *
      * @param string $outputFile The full path to the output file
+     *
+     * @throws \RuntimeException
      */
     protected function prepareOutput($outputFile)
     {
