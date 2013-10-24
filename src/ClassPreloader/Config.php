@@ -30,9 +30,9 @@ class Config implements \IteratorAggregate
     protected $inclusiveFilters = array();
 
     /**
-     * Set the filenames owned by the config
+     * Add the filename owned by the config
      *
-     * @param array $filenames File name
+     * @param string $filename File name
      *
      * @return self
      */
