@@ -98,10 +98,22 @@ EOF
             $pretty = substr($pretty, 7);
         }
 
-        // Add a wrapping namespace if needed
-        if (false === strpos($pretty, 'namespace ')) {
+        // wrapping global namespace
+        if (false === strpos($pretty, 'namespace')) {
             $pretty = "namespace {\n" . $pretty . "\n}\n";
+
+            return $pretty;
         }
+
+        // wrapping named namespace
+        $namespaceLine = $stmts[0]->getLine();
+        $lines = file($file);
+        $pretty = sprintf(
+            '%s%s%s}',
+            str_replace(';', ' {', $lines[$namespaceLine - 1]),
+            implode('', array_slice($lines, 1, $namespaceLine - 2)),
+            implode('', array_slice($lines, $namespaceLine))
+        );
 
         return $pretty;
     }
