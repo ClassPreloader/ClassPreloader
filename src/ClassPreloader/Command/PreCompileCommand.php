@@ -59,10 +59,10 @@ EOF
         if (!$this->traverser) {
             $this->traverser = new NodeTraverser();
             if ($this->input->getOption('fix_dir')) {
-                $this->traverser->addVisitor(new DirVisitor($file));
+                $this->traverser->addVisitor(new DirVisitor());
             }
             if ($this->input->getOption('fix_file')) {
-                $this->traverser->addVisitor(new FileVisitor($file));
+                $this->traverser->addVisitor(new FileVisitor());
             }
         }
 
