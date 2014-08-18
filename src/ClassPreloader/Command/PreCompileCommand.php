@@ -89,8 +89,8 @@ EOF
             $content = file_get_contents($file);
         }
 
-        $stmts = $this->getTraverser()
-            ->traverseFile($this->parser->parse($content), $file);
+        $parsed = $this->parser->parse($content);
+        $stmts = $this->getTraverser()->traverseFile($parsed, $file);
         $pretty = $this->printer->prettyPrint($stmts);
 
         // Remove the open PHP tag
@@ -99,7 +99,7 @@ EOF
         }
 
         // Add a wrapping namespace if needed
-        if (false === strpos($pretty, 'namespace ')) {
+        if (!array_filter($parsed, function($value) { return $value instanceof \PHPParser_Node_Stmt_Namespace; })) {
             $pretty = "namespace {\n" . $pretty . "\n}\n";
         }
 
