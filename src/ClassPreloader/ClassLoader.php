@@ -106,7 +106,19 @@ class ClassLoader
                 $files[] = $r->getFileName();
             }
             catch (\ReflectionException $e)
-            {}
+            {
+                // We ignore all exceptions related to reflection,
+                // because in some cases class can't exists. This
+                // can be if you use in your code constuctions like
+                //
+                // if (class_exists('SomeClass')) { // <-- here will trigger autoload
+                //      class SomeSuperClass extends SomeClass {
+                //      }
+                // }
+                //
+                // We ignore all problems with classes, interfaces and
+                // traits.
+            }
         }
 
         return $files;
