@@ -2,15 +2,19 @@
 
 namespace ClassPreloader\Parser;
 
+use PhpParser\Node;
+use PhpParser\Node\Scalar\MagicConst\Dir;
+use PhpParser\Node\Scalar\String;
+
 /**
  * Finds all references to __DIR__ and replaces them with the actual directory
  */
 class DirVisitor extends AbstractNodeVisitor
 {
-    public function enterNode(\PHPParser_Node $node)
+    public function enterNode(Node $node)
     {
-        if ($node instanceof \PHPParser_Node_Scalar_DirConst) {
-            return new \PHPParser_Node_Scalar_String($this->getDir());
+        if ($node instanceof Dir) {
+            return new String($this->getDir());
         }
     }
 }

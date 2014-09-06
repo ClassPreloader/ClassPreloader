@@ -2,15 +2,19 @@
 
 namespace ClassPreloader\Parser;
 
+use PhpParser\Node;
+use PhpParser\Node\Scalar\MagicConst\File;
+use PhpParser\Node\Scalar\String;
+
 /**
  * Finds all references to __FILE__ and replaces them with the actual file path
  */
 class FileVisitor extends AbstractNodeVisitor
 {
-    public function enterNode(\PHPParser_Node $node)
+    public function enterNode(Node $node)
     {
-        if ($node instanceof \PHPParser_Node_Scalar_FileConst) {
-            return new \PHPParser_Node_Scalar_String($this->getFilename());
+        if ($node instanceof File) {
+            return new String($this->getFilename());
         }
     }
 }
