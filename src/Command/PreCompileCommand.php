@@ -6,6 +6,9 @@ use ClassPreloader\Config;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\NodeTraverser;
 use ClassPreloader\Parser\FileVisitor;
+use PhpParser\Lexer;
+use PhpParser\Parser;
+use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,8 +26,8 @@ class PreCompileCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->printer = new \PHPParser_PrettyPrinter_Zend();
-        $this->parser = new \PHPParser_Parser(new \PHPParser_Lexer());
+        $this->printer = new PrettyPrinter();
+        $this->parser = new Parser(new Lexer());
     }
 
     /**

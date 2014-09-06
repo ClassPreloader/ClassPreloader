@@ -2,10 +2,12 @@
 
 namespace ClassPreloader\Parser;
 
+use PhpParser\NodeTraverser as BaseTraverser;
+
 /**
  * Allows a filename to be set when visiting
  */
-class NodeTraverser extends \PHPParser_NodeTraverser
+class NodeTraverser extends BaseTraverser
 {
     public function traverseFile(array $nodes, $filename)
     {

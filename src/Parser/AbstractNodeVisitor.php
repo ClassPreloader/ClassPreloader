@@ -2,10 +2,12 @@
 
 namespace ClassPreloader\Parser;
 
+use PhpParser\NodeVisitorAbstract;
+
 /**
  * Abstract node visitor used to track the filename
  */
-abstract class AbstractNodeVisitor extends \PHPParser_NodeVisitorAbstract
+abstract class AbstractNodeVisitor extends NodeVisitorAbstract
 {
     /**
      * @var string Current file being parsed
