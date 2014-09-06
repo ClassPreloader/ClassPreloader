@@ -95,14 +95,30 @@ class ClassLoader
         $files = array();
         foreach ($this->classList->getClasses() as $class) {
             // Push interfaces before classes if not already loaded
-            $r = new \ReflectionClass($class);
-            foreach ($r->getInterfaces() as $inf) {
-                $name = $inf->getFileName();
-                if ($name && !in_array($name, $files)) {
-                    $files[] = $name;
+            try {
+                $r = new \ReflectionClass($class);
+                foreach ($r->getInterfaces() as $inf) {
+                    $name = $inf->getFileName();
+                    if ($name && !in_array($name, $files)) {
+                        $files[] = $name;
+                    }
                 }
+                $files[] = $r->getFileName();
             }
-            $files[] = $r->getFileName();
+            catch (\ReflectionException $e)
+            {
+                // We ignore all exceptions related to reflection,
+                // because in some cases class can't exists. This
+                // can be if you use in your code constuctions like
+                //
+                // if (class_exists('SomeClass')) { // <-- here will trigger autoload
+                //      class SomeSuperClass extends SomeClass {
+                //      }
+                // }
+                //
+                // We ignore all problems with classes, interfaces and
+                // traits.
+            }
         }
 
         return $files;
