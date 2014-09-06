@@ -104,9 +104,7 @@ class ClassLoader
                     }
                 }
                 $files[] = $r->getFileName();
-            }
-            catch (\ReflectionException $e)
-            {
+            } catch (\ReflectionException $e) {
                 // We ignore all exceptions related to reflection,
                 // because in some cases class can't exists. This
                 // can be if you use in your code constuctions like
