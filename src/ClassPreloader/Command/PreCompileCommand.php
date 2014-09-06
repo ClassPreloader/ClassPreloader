@@ -41,6 +41,7 @@ class PreCompileCommand extends Command
             ->addOption('fix_dir', null, InputOption::VALUE_REQUIRED, 'Convert __DIR__ constants to the original directory of a file', 1)
             ->addOption('fix_file', null, InputOption::VALUE_REQUIRED, 'Convert __FILE__ constants to the original path of a file', 1)
             ->addOption('strip_comments', null, InputOption::VALUE_REQUIRED, 'Set to 1 to strip comments from each source file', 0)
+            ->addOption('wrap_namespaces', null, InputOption::VALUE_REQUIRED, 'Wrap code into namespace if namespaces not found', 1)
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command iterates over each script, normalizes
 the file to be wrapped in namespaces, and combines each file into a single PHP
@@ -89,8 +90,8 @@ EOF
             $content = file_get_contents($file);
         }
 
-        $stmts = $this->getTraverser()
-            ->traverseFile($this->parser->parse($content), $file);
+        $parsed = $this->parser->parse($content);
+        $stmts = $this->getTraverser()->traverseFile($parsed, $file);
         $pretty = $this->printer->prettyPrint($stmts);
 
         // Remove the open PHP tag
@@ -99,11 +100,28 @@ EOF
         }
 
         // Add a wrapping namespace if needed
-        if (false === strpos($pretty, 'namespace ')) {
+        if ($this->input->getOption('wrap_namespaces') && !$this->parsedCodeHasNamespaces($parsed)) {
             $pretty = "namespace {\n" . $pretty . "\n}\n";
         }
 
         return $pretty;
+    }
+
+    /**
+     * Check parsed code for having namespaces
+     */
+    protected function parsedCodeHasNamespaces($parsed)
+    {
+        // Namespaces can be only on first level in the code, so we make only
+        // check on first level.
+        return !empty(
+            array_filter(
+                $parsed,
+                function($value) {
+                    return $value instanceof \PHPParser_Node_Stmt_Namespace;
+                }
+            )
+        );
     }
 
     /**
