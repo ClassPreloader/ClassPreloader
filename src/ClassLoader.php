@@ -13,12 +13,14 @@ require_once __DIR__ . '/ClassList.php';
 class ClassLoader
 {
     /**
-     * @var ClassList List of loaded classes
+     * ClassList List of loaded classes.
+     *
+     * @var
      */
     public $classList;
 
     /**
-     * Create the dependency list
+     * Create the dependency list.
      */
     public function __construct()
     {
@@ -26,7 +28,15 @@ class ClassLoader
     }
 
     /**
-     * Wrap a block of code in the autoloader and get a list of loaded classes
+     * Make sure we're unregistered from the autoloader.
+     */
+    public function __destruct()
+    {
+        $this->unregister();
+    }
+
+    /**
+     * Wrap a block of code in the autoloader and get a list of loaded classes.
      *
      * @param \Callable $func Callable function
      *
@@ -65,7 +75,8 @@ class ClassLoader
     /**
      * Loads the given class or interface.
      *
-     * @param  string    $class The name of the class
+     * @param string $class The name of the class
+     *
      * @return bool|null True, if loaded
      */
     public function loadClass($class)
@@ -86,7 +97,7 @@ class ClassLoader
     }
 
     /**
-     * Get an array of loaded file names in order of loading
+     * Get an array of loaded file names in order of loading.
      *
      * @return array
      */
