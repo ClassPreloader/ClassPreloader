@@ -7,7 +7,7 @@ required for a specific use case. Using a single compiled PHP script instead of 
 What it actually does
 ---------------------
 
-This tool listens for each file that is autoloaded, creates a list of files, traverses the parsed PHP file using [PHPParser](https://github.com/nikic/PHP-Parser) and any visitors of a Config object, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
+This tool listens for each file that is autoloaded, creates a list of files, traverses the parsed PHP file using [PHP Parser](https://github.com/nikic/PHP-Parser) and any visitors of a Config object, wraps the code of each file in a namespace block if necessary, and writes the contents of every autoloaded file (in order) to a single PHP file.
 
 Notice
 ------
@@ -22,7 +22,7 @@ Add the ClassPreloader as a dependency to your composer.json file:
 ```javascript
 {
     "require": {
-        "classpreloader/classpreloader": "1.0.*"
+        "classpreloader/classpreloader": "1.1.*"
     },
     "config": {
         "bin-dir": "bin"
@@ -94,7 +94,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```javascript
 {
     "require": {
-        "classpreloader/classpreloader": "1.0.*"
+        "classpreloader/classpreloader": "1.1.*"
     },
     "scripts": {
         "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
