@@ -102,7 +102,7 @@ EOF
         }
 
         // Add a wrapping namespace if needed
-        if (false === strpos($pretty, 'namespace ')) {
+        if (strpos($pretty, 'namespace ') === false) {
             $pretty = "namespace {\n" . $pretty . "\n}\n";
         }
 
