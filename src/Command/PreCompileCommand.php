@@ -92,8 +92,8 @@ EOF
             $content = file_get_contents($file);
         }
 
-        $stmts = $this->getTraverser()
-            ->traverseFile($this->parser->parse($content), $file);
+        $parsed = $this->parser->parse($content);
+        $stmts = $this->getTraverser()->traverseFile($parsed, $file);
         $pretty = $this->printer->prettyPrint($stmts);
 
         // Remove the open PHP tag
