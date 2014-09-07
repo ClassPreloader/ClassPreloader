@@ -3,6 +3,16 @@
     "description": "Helps class loading performance by generating a single PHP file containing all of the autoloaded files for a specific use case",
     "keywords": ["autoload","class","preload"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Dowling",
+            "email": "mtdowling@gmail.com"
+        },
+        {
+            "name": "Graham Campbell",
+            "email": "graham@mineuk.com"
+        }
+    ],
     "require":{
         "php": ">=5.3.3",
         "symfony/console": "~2.1",
