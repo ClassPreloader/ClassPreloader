@@ -2,8 +2,8 @@
 
 namespace ClassPreloader;
 
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\Finder\Finder;
 
 /**
  * ClassPreloader application CLI
