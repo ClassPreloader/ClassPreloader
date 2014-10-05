@@ -6,10 +6,17 @@ use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Finder\Finder;
 
 /**
- * ClassPreloader application CLI
+ * This is the application class.
+ *
+ * This is sets everything up for the CLI.
  */
 class Application extends BaseApplication
 {
+    /**
+     * Create a new application.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct('ClassPreloader');

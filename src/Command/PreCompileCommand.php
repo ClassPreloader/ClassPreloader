@@ -15,14 +15,53 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
+/**
+ * This is the pre-compile command class.
+ *
+ * This allows the user to communicate with class preloader.
+ */
 class PreCompileCommand extends Command
 {
-    protected $input;
-    protected $output;
+    /**
+     * The printer.
+     *
+     * @var \PhpParser\PrettyPrinter\Standard
+     */
     protected $printer;
-    protected $traverser;
+
+    /**
+     * The parser.
+     *
+     * @var \PhpParser\Parser
+     */
     protected $parser;
 
+    /**
+     * The input.
+     *
+     * @var \Symfony\Component\Console\Input\InputInterface|null
+     */
+    protected $input;
+
+    /**
+     * The output.
+     *
+     * @var \Symfony\Component\Console\Output\OutputInterface|null
+     */
+    protected $output;
+
+    /**
+     * The traverser.
+     *
+     * @var \ClassPreloader\Parser\NodeTraverser|null
+     */
+    protected $traverser;
+
+    /**
+     * Create a new pre-compile command.
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -31,7 +70,9 @@ class PreCompileCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
+     * Configure the current command.
+     *
+     * @return void
      */
     protected function configure()
     {
@@ -53,9 +94,9 @@ EOF
     }
 
     /**
-     * Get the node traverser used by the command
+     * Get the node traverser used by the command.
      *
-     * @return NodeTraverser
+     * @return \ClassPreloader\Parser\NodeTraverser
      */
     protected function getTraverser()
     {
@@ -73,12 +114,13 @@ EOF
     }
 
     /**
-     * Get a pretty printed string of code from a file while applying visitors
+     * Get a pretty printed string of code from a file while applying visitors.
      *
-     * @param string $file Name of the file to get code from
+     * @param string $file
+     *
+     * @throws \RuntimeException
      *
      * @return string
-     * @throws \RuntimeException
      */
     protected function getCode($file)
     {
@@ -110,7 +152,11 @@ EOF
     }
 
     /**
-     * Validate the command options
+     * Validate the command options.
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
      */
     protected function validateCommand()
     {
@@ -124,12 +170,13 @@ EOF
     }
 
     /**
-     * Get a list of files in order
+     * Get a list of files in order.
      *
      * @param mixed $config Configuration option
      *
-     * @return array
      * @throws \InvalidArgumentException
+     *
+     * @return array
      */
     protected function getFileList($config)
     {
@@ -162,17 +209,17 @@ EOF
             return $result;
         }
 
-        throw new \InvalidArgumentException(
-            'Config must return an array of filenames or a Config object'
-        );
+        throw new \InvalidArgumentException('Config must return an array of filenames or a Config object');
     }
 
     /**
-     * Prepare the output file and directory
+     * Prepare the output file and directory.
      *
-     * @param string $outputFile The full path to the output file
+     * @param string $outputFile
      *
      * @throws \RuntimeException
+     *
+     * @return void
      */
     protected function prepareOutput($outputFile)
     {
@@ -183,7 +230,14 @@ EOF
     }
 
     /**
-     * {@inheritdoc}
+     * Executes the pre-compile command.
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
+     * @throws \RuntimeException
+     *
+     * @return null|int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -199,9 +253,7 @@ EOF
         $this->prepareOutput($outputFile);
 
         if (!$handle = fopen($input->getOption('output'), 'w')) {
-            throw new \RuntimeException(
-                "Unable to open {$outputFile} for writing"
-            );
+            throw new \RuntimeException("Unable to open {$outputFile} for writing");
         }
 
         // Write the first line of the output

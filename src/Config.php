@@ -2,39 +2,49 @@
 
 namespace ClassPreloader;
 
-use Parser\AbstractNodeVisitor;
+use ClassPreloader\Parser\AbstractNodeVisitor;
 
 /**
- * Class loader configuration object
+ * This is the config class.
+ *
+ * This contains all the class preloader configuration.
  */
 class Config implements \IteratorAggregate
 {
     /**
-     * @var array Array of AbstractNodeVisitor objects that visit nodes
+     * The array of AbstractNodeVisitor objects that visit nodes.
+     *
+     * @var array
      */
     protected $visitors = array();
 
     /**
-     * @var array Array of file names
+     * The array of file names.
+     *
+     * @var array
      */
     protected $filenames = array();
 
     /**
-     * @var array Array of exclusive filters
+     * The array of exclusive filters.
+     *
+     * @var array
      */
     protected $exclusiveFilters = array();
 
     /**
-     * @var array Array of inclusive filters
+     * The array of inclusive filters.
+     *
+     * @var array
      */
     protected $inclusiveFilters = array();
 
     /**
-     * Add the filename owned by the config
+     * Add the filename owned by the config.
      *
-     * @param string $filename File name
+     * @param string $filename
      *
-     * @return self
+     * @return $this
      */
     public function addFile($filename)
     {
@@ -44,7 +54,7 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Get an array of file names that satisfy any added filters
+     * Get an array of file names that satisfy any added filters.
      *
      * @return array
      */
@@ -69,7 +79,7 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Get an iterator for the filenames
+     * Get an iterator for the filenames.
      *
      * @return \ArrayIterator
      */
@@ -79,11 +89,13 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Add a filter used to filter out classes matching a specific pattern
+     * Add a filter used to filter out file names matching the pattern.
      *
-     * @param string $pattern Regular expression pattern
+     * We're filtering the classes using a regular expression.
      *
-     * @return self
+     * @param string $pattern
+     *
+     * @return $this
      */
     public function addExclusiveFilter($pattern)
     {
@@ -93,11 +105,13 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Add a filter used to grab only file names matching the pattern
+     * Add a filter used to grab only file names matching the pattern.
+     *
+     * We're filtering the classes using a regular expression.
      *
      * @param string $pattern Regular expression pattern
      *
-     * @return self
+     * @return $this
      */
     public function addInclusiveFilter($pattern)
     {
@@ -107,12 +121,13 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Add a visitor that will visit each node when traversing the node list
-     * of each file.
+     * Add a visitor.
      *
-     * @param AbstractNodeVisitor $visitor Node visitor
+     * It will visit each node when traversing the node list of each file.
      *
-     * @return self
+     * @param \ClassPreloader\Parser\AbstractNodeVisitor $visitor
+     *
+     * @return $this
      */
     public function addVisitor(AbstractNodeVisitor $visitor)
     {
@@ -122,7 +137,7 @@ class Config implements \IteratorAggregate
     }
 
     /**
-     * Get an array of node visitors
+     * Get an array of node visitors.
      *
      * @return array
      */

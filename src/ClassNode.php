@@ -3,30 +3,40 @@
 namespace ClassPreloader;
 
 /**
- * A simple ClassNode that contains a value, previous, and next pointers
+ * This is the class node class.
+ *
+ * This class contains a value, and the previous/next pointers.
  */
 class ClassNode
 {
     /**
-     * @var ClassNode|null Next node pointer
+     * The next node pointer.
+     *
+     * @var \ClassPreloader\ClassNode|null
      */
     public $next;
 
     /**
-     * @var ClassNode|null Previous node pointer
+     * The previous node pointer.
+     *
+     * @var \ClassPreloader\ClassNode|null
      */
     public $prev;
 
     /**
-     * @var mixed Value of the ClassNode
+     * The value of the class node.
+     *
+     * @var mixed
      */
     public $value;
 
     /**
-     * Create a new ClassNode
+     * Create a new class node.
      *
-     * @param mixed     $value Value of the class node
-     * @param ClassNode $prev  Previous node pointer
+     * @param mixed                     $value
+     * @param \ClassPreloader\ClassNode $prev
+     *
+     * @return void
      */
     public function __construct($value = null, $prev = null)
     {
