@@ -5,10 +5,20 @@ namespace ClassPreloader\Parser;
 use PhpParser\NodeTraverser as BaseTraverser;
 
 /**
- * Allows a filename to be set when visiting
+ * This is the file node visitor class.
+ *
+ * This allows a filename to be set when visiting.
  */
 class NodeTraverser extends BaseTraverser
 {
+    /**
+     * Transverse the file.
+     *
+     * @param array  $nodes
+     * @param string $filename
+     *
+     * @return void
+     */
     public function traverseFile(array $nodes, $filename)
     {
         // Set the correct state on each visitor

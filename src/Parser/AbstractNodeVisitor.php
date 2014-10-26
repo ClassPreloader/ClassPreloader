@@ -5,21 +5,25 @@ namespace ClassPreloader\Parser;
 use PhpParser\NodeVisitorAbstract;
 
 /**
- * Abstract node visitor used to track the filename
+ * This is the abstract node visitor class.
+ *
+ * This is used to track the filename.
  */
 abstract class AbstractNodeVisitor extends NodeVisitorAbstract
 {
     /**
-     * @var string Current file being parsed
+     * The current file being parsed.
+     *
+     * @var string
      */
     protected $filename = '';
 
     /**
-     * Set the full path to the current file being parsed
+     * Set the full path to the current file being parsed.
      *
-     * @param string $filename Filename being parser
+     * @param string $filename
      *
-     * @return self
+     * @return $this
      */
     public function setFilename($filename)
     {
@@ -29,7 +33,7 @@ abstract class AbstractNodeVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * Get the full path to the current file being parsed
+     * Get the full path to the current file being parsed.
      *
      * @return string
      */
@@ -39,7 +43,7 @@ abstract class AbstractNodeVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * Get the directory of the current file being parsed
+     * Get the directory of the current file being parsed.
      *
      * @return string
      */

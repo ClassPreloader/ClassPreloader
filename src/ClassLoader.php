@@ -6,21 +6,25 @@ require_once __DIR__ . '/ClassNode.php';
 require_once __DIR__ . '/ClassList.php';
 
 /**
- * Creates an autoloader that intercepts and keeps track of each include in
- * order that files must be included. This autoloader proxies to all other
+ * This is the class loader class.
+ *
+ * This creates an autoloader that intercepts and keeps track of each include
+ * in order that files must be included. This autoloader proxies to all other
  * underlying autoloaders.
  */
 class ClassLoader
 {
     /**
-     * ClassList List of loaded classes.
+     * The list of loaded classes.
      *
-     * @var
+     * @var \ClassPreloader\ClassList
      */
     public $classList;
 
     /**
-     * Create the dependency list.
+     * Create a new class loader.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -28,7 +32,11 @@ class ClassLoader
     }
 
     /**
-     * Make sure we're unregistered from the autoloader.
+     * Destroy the class loader.
+     *
+     * This makes sure we're unregistered from the autoloader.
+     *
+     * @return void
      */
     public function __destruct()
     {
@@ -38,9 +46,9 @@ class ClassLoader
     /**
      * Wrap a block of code in the autoloader and get a list of loaded classes.
      *
-     * @param \Callable $func Callable function
+     * @param callable $func
      *
-     * @return Config
+     * @return \ClassPreloader\Config
      */
     public static function getIncludes($func)
     {
@@ -58,6 +66,8 @@ class ClassLoader
 
     /**
      * Registers this instance as an autoloader.
+     *
+     * @return void
      */
     public function register()
     {
@@ -66,6 +76,8 @@ class ClassLoader
 
     /**
      * Unregisters this instance as an autoloader.
+     *
+     * @return void
      */
     public function unregister()
     {
@@ -73,11 +85,13 @@ class ClassLoader
     }
 
     /**
-     * Loads the given class or interface.
+     * Loads the given class, interface or trait.
      *
-     * @param string $class The name of the class
+     * We'll return true if it was loaded.
      *
-     * @return bool|null True, if loaded
+     * @param string $class
+     *
+     * @return bool|null
      */
     public function loadClass($class)
     {
