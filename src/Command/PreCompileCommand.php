@@ -261,18 +261,24 @@ EOF
         // Write the first line of the output
         fwrite($handle, "<?php\n");
         $output->writeln('> Compiling classes');
+        
+        $count = 0;
+        $countSkipped = 0;
         foreach ($files as $file) {
+            $count ++;
             try {
                 $code = $this->getCode($file);
                 $this->output->writeln('- Writing ' . $file);
                 fwrite($handle, $code . "\n");
             } catch (SkipFileException $ex) {
+                $countSkipped ++;
                 $this->output->writeln('- Skipping ' . $file);
             }
         }
         fclose($handle);
 
         $output->writeln("> Compiled loader written to {$outputFile}");
-        $output->writeln('- ' . (round(filesize($outputFile) / 1024)) . ' kb');
+        $output->writeln('- Files: ' . ($count - $countSkipped) . '/' . $count.' (skipped: '.$countSkipped.')');
+        $output->writeln('- Filesize: ' . (round(filesize($outputFile) / 1024)) . ' kb');
     }
 }
