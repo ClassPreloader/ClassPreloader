@@ -2,6 +2,7 @@
 
 namespace ClassPreloader\Parser;
 
+use ClassPreloader\Exception\SkipFileException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\File;
 use PhpParser\Node\Scalar\String;
@@ -13,6 +14,13 @@ use PhpParser\Node\Scalar\String;
  */
 class FileVisitor extends AbstractNodeVisitor
 {
+    protected $throwException = false;
+    
+    public function __construct($mode = false)
+    {
+        $this->throwException = $mode;
+    }
+    
     /**
      * Enter and modify the node.
      *
@@ -23,6 +31,10 @@ class FileVisitor extends AbstractNodeVisitor
     public function enterNode(Node $node)
     {
         if ($node instanceof File) {
+            if ($this->throwException === true) {
+                throw new SkipFileException('__FILE__ constant found, skipping...');
+            }
+            
             return new String($this->getFilename());
         }
     }
