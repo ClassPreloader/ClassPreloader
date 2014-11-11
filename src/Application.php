@@ -31,7 +31,7 @@ class Application extends BaseApplication
         // Add each command to the CLI
         foreach ($finder as $file) {
             $filename = str_replace('\\', '/', $file->getRealpath());
-            $pos = strrpos($filename, '/ClassPreloader/') + strlen('/ClassPreloader/');
+            $pos = strripos($filename, '/ClassPreloader/') + strlen('/ClassPreloader/src/');
             $class = __NAMESPACE__ . '\\'
                 . substr(str_replace('/', '\\', substr($filename, $pos)), 0, -4);
             $this->add(new $class());
