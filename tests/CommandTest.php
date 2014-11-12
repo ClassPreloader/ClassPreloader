@@ -29,8 +29,8 @@ EOT;
 > Loading configuration file
 - Found 1 files
 > Compiling classes
-- Writing $bar
-- Writing $foo
+- Skipping $bar
+- Skipping $foo
 > Compiled loader written to $out
 - Files: 0/2 (skipped: 2)
 - Filesize: 0 kb
@@ -174,7 +174,7 @@ EOT;
                     '--skip_dir_file' => true,
                 ),
                 $expectedSkip,
-                $last,
+                '<?php',
             ),
         );
     }
