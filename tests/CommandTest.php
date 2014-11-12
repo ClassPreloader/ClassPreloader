@@ -6,6 +6,25 @@ use Symfony\Component\Console\Output\BufferedOutput;
 
 class CommandTest extends PHPUnit_Framework_TestCase
 {
+    private $autoloadFunc;
+
+    /**
+     * This additional autoloader is needed to test if the class is not puted multiple times into the cache.
+     * See https://github.com/mtdowling/ClassPreloader/pull/35
+     */
+    public function setUp()
+    {
+        $this->autoloadFunc = function ($class) {
+            return false;
+        };
+        
+        spl_autoload_register($this->autoloadFunc, true, true);
+    }
+    
+    public function tearDown()
+    {
+        spl_autoload_unregister($this->autoloadFunc);
+    }
     public function commandProvider()
     {
         $out = __DIR__ . DIRECTORY_SEPARATOR . 'output.txt';
