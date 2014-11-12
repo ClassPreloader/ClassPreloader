@@ -128,7 +128,9 @@ class ClassLoader
                         $files[] = $name;
                     }
                 }
-                $files[] = $r->getFileName();
+                if (!in_array($r->getFileName(), $files)) {
+                    $files[] = $r->getFileName();
+                }
             } catch (\ReflectionException $e) {
                 // We ignore all exceptions related to reflection,
                 // because in some cases class can't exists. This
