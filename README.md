@@ -43,6 +43,8 @@ You use the bin/classpreloader.php compile command with a few command line flags
 
 `--fix_file`: (defaults to 1) Set to 0 to not replace "__FILE__" constants with the actual location of the original file.
 
+`--strip_comments`: (defaults to 0) Set to 1 to strip comments from each source file.
+
 Writing a config file
 ---------------------
 
