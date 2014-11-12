@@ -2,6 +2,7 @@
 
 namespace ClassPreloader\Parser;
 
+use ClassPreloader\Exception\SkipFileException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\File;
 use PhpParser\Node\Scalar\String;
