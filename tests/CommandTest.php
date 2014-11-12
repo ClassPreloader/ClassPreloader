@@ -17,10 +17,10 @@ class CommandTest extends PHPUnit_Framework_TestCase
         $this->autoloadFunc = function ($class) {
             return false;
         };
-        
+
         spl_autoload_register($this->autoloadFunc, true, true);
     }
-    
+
     public function tearDown()
     {
         spl_autoload_unregister($this->autoloadFunc);
@@ -165,7 +165,7 @@ EOT;
                 $expected,
                 $third,
             ),
-                        array(
+            array(
                 array(
                     '--config'   => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
                     '--output'   => $out,
