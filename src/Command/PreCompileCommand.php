@@ -6,6 +6,7 @@ use ClassPreloader\Config;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
 use ClassPreloader\Parser\NodeTraverser;
+use ClassPreloader\Exception\SkipFileException;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
@@ -82,6 +83,7 @@ class PreCompileCommand extends Command
             ->setDescription('Compiles classes into a single file')
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'CSV of filenames to load, or the path to a PHP script that returns an array of file names')
             ->addOption('output', null, InputOption::VALUE_REQUIRED)
+            ->addOption('skip_dir_file', null, InputOption::VALUE_NONE, 'Skip files with __DIR__ or __FILE__ to make the cache portable')
             ->addOption('fix_dir', null, InputOption::VALUE_REQUIRED, 'Convert __DIR__ constants to the original directory of a file', 1)
             ->addOption('fix_file', null, InputOption::VALUE_REQUIRED, 'Convert __FILE__ constants to the original path of a file', 1)
             ->addOption('strip_comments', null, InputOption::VALUE_REQUIRED, 'Set to 1 to strip comments from each source file', 0)
@@ -103,10 +105,10 @@ EOF
         if (!$this->traverser) {
             $this->traverser = new NodeTraverser();
             if ($this->input->getOption('fix_dir')) {
-                $this->traverser->addVisitor(new DirVisitor());
+                $this->traverser->addVisitor(new DirVisitor($this->input->getOption('skip_dir_file')));
             }
             if ($this->input->getOption('fix_file')) {
-                $this->traverser->addVisitor(new FileVisitor());
+                $this->traverser->addVisitor(new FileVisitor($this->input->getOption('skip_dir_file')));
             }
         }
 
@@ -259,13 +261,24 @@ EOF
         // Write the first line of the output
         fwrite($handle, "<?php\n");
         $output->writeln('> Compiling classes');
+        
+        $count = 0;
+        $countSkipped = 0;
         foreach ($files as $file) {
-            $this->output->writeln('- Writing ' . $file);
-            fwrite($handle, $this->getCode($file) . "\n");
+            $count ++;
+            try {
+                $code = $this->getCode($file);
+                $this->output->writeln('- Writing ' . $file);
+                fwrite($handle, $code . "\n");
+            } catch (SkipFileException $ex) {
+                $countSkipped ++;
+                $this->output->writeln('- Skipping ' . $file);
+            }
         }
         fclose($handle);
 
         $output->writeln("> Compiled loader written to {$outputFile}");
-        $output->writeln('- ' . (round(filesize($outputFile) / 1024)) . ' kb');
+        $output->writeln('- Files: ' . ($count - $countSkipped) . '/' . $count.' (skipped: '.$countSkipped.')');
+        $output->writeln('- Filesize: ' . (round(filesize($outputFile) / 1024)) . ' kb');
     }
 }
