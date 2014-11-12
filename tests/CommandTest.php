@@ -40,7 +40,18 @@ class CommandTest extends PHPUnit_Framework_TestCase
 - Writing $bar
 - Writing $foo
 > Compiled loader written to $out
-- 0 kb
+- Files: 2/2 (skipped: 0)
+- Filesize: 0 kb
+EOT;
+        $expectedSkip = <<<EOT
+> Loading configuration file
+- Found 1 files
+> Compiling classes
+- Skipping $bar
+- Skipping $foo
+> Compiled loader written to $out
+- Files: 0/2 (skipped: 2)
+- Filesize: 0 kb
 EOT;
 
         $first = <<<EOT
@@ -165,7 +176,7 @@ EOT;
                 $expected,
                 $third,
             ),
-                        array(
+            array(
                 array(
                     '--config'   => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
                     '--output'   => $out,
@@ -173,6 +184,15 @@ EOT;
                 ),
                 $expected,
                 $last,
+            ),
+            array(
+                array(
+                    '--config'   => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--output'   => $out,
+                    '--skip_dir_file' => true,
+                ),
+                $expectedSkip,
+                '<?php',
             ),
         );
     }
