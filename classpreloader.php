@@ -6,5 +6,6 @@ if (file_exists($autoloadPath = __DIR__ . '/../../autoload.php')) {
 } else {
     require_once __DIR__ . '/vendor/autoload.php';
 }
+
 $application = new ClassPreloader\Application();
 $application->run();
