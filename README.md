@@ -61,7 +61,7 @@ require __DIR__ . '/src/ClassPreloader/ClassLoader.php';
 
 use ClassPreloader\ClassLoader;
 
-$config = ClassLoader::getIncludes(function(ClassLoader $loader) {
+$config = ClassLoader::getIncludes(function (ClassLoader $loader) {
     require __DIR__ . '/vendor/autoload.php';
     $loader->register();
     $aws = Aws\Common\Aws::factory(array(
@@ -93,7 +93,7 @@ Automating the process with Composer
 
 You can automate the process of creating preloaders using Composer's script functionality. For example, if you wanted to automatically create a preloader each time the AWS SDK for PHP is installed, you could define a script like the following in your composer.json file:
 
-```javascript
+```json
 {
     "require": {
         "classpreloader/classpreloader": "1.1.*"
