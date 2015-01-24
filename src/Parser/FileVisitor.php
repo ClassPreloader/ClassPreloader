@@ -24,7 +24,7 @@ class FileVisitor extends AbstractNodeVisitor
     /**
      * Create a new file visitor.
      *
-     * @param bool mode
+     * @param bool $skip
      *
      * @return void
      */

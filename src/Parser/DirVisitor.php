@@ -24,7 +24,7 @@ class DirVisitor extends AbstractNodeVisitor
     /**
      * Create a new directory visitor.
      *
-     * @param bool mode
+     * @param bool $skip
      *
      * @return void
      */
