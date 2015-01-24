@@ -3,10 +3,10 @@
 namespace ClassPreloader\Command;
 
 use ClassPreloader\Config;
+use ClassPreloader\Exception\SkipFileException;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
 use ClassPreloader\Parser\NodeTraverser;
-use ClassPreloader\Exception\SkipFileException;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
@@ -261,17 +261,17 @@ EOF
         // Write the first line of the output
         fwrite($handle, "<?php\n");
         $output->writeln('> Compiling classes');
-        
+
         $count = 0;
         $countSkipped = 0;
         foreach ($files as $file) {
-            $count ++;
+            $count++;
             try {
                 $code = $this->getCode($file);
                 $this->output->writeln('- Writing ' . $file);
                 fwrite($handle, $code . "\n");
             } catch (SkipFileException $ex) {
-                $countSkipped ++;
+                $countSkipped++;
                 $this->output->writeln('- Skipping ' . $file);
             }
         }

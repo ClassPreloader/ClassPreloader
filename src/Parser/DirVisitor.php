@@ -14,13 +14,25 @@ use PhpParser\Node\Scalar\String;
  */
 class DirVisitor extends AbstractNodeVisitor
 {
-    protected $throwException = false;
-    
-    public function __construct($mode = false)
+    /**
+     * Should we skip the file if it contains a dir constant?
+     *
+     * @var bool
+     */
+    protected $skip = false;
+
+    /**
+     * Create a new directory visitor.
+     *
+     * @param bool mode
+     *
+     * @return void
+     */
+    public function __construct($skip = false)
     {
-        $this->throwException = $mode;
+        $this->skip = $skip;
     }
-    
+
     /**
      * Enter and modify the node.
      *
@@ -31,10 +43,10 @@ class DirVisitor extends AbstractNodeVisitor
     public function enterNode(Node $node)
     {
         if ($node instanceof Dir) {
-            if ($this->throwException === true) {
+            if ($this->skip) {
                 throw new SkipFileException('__DIR__ constant found, skipping...');
             }
-            
+
             return new String($this->getDir());
         }
     }

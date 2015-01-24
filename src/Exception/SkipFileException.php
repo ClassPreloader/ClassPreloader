@@ -1,11 +1,13 @@
 <?php
+
 namespace ClassPreloader\Exception;
 
 use Exception;
 
 /**
- * Abstract node visitor used to track the filename
+ * This is the skip file exception class.
  */
 class SkipFileException extends Exception
 {
+    //
 }
