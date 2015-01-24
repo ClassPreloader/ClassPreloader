@@ -1,16 +1,26 @@
 language: php
 
-php:
-  - 5.3.3
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
+sudo: false
 
-before_script:
-  - travis_retry composer self-update
+matrix:
+  include:
+    - php: 5.3.3
+    - php: 5.3
+    - php: 5.4
+    - php: 5.5
+    - php: 5.5.9
+    - php: 5.6
+    - php: 5.6
+      env: coverage=true
+    - php: hhvm
+
+env:
+  global:
+    - coverage=false
+
+install:
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit --coverage-text
+  - if [ "$coverage" = "false" ]; then vendor/bin/phpunit; fi;
+  - if [ "$coverage" = "true" ]; then vendor/bin/phpunit --coverage-text; fi;
