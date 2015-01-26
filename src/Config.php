@@ -44,7 +44,7 @@ class Config implements \IteratorAggregate
      *
      * @param string $filename
      *
-     * @return $this
+     * @return \ClassPreloader\Config
      */
     public function addFile($filename)
     {
@@ -95,7 +95,7 @@ class Config implements \IteratorAggregate
      *
      * @param string $pattern
      *
-     * @return $this
+     * @return \ClassPreloader\Config
      */
     public function addExclusiveFilter($pattern)
     {
@@ -111,7 +111,7 @@ class Config implements \IteratorAggregate
      *
      * @param string $pattern Regular expression pattern
      *
-     * @return $this
+     * @return \ClassPreloader\Config
      */
     public function addInclusiveFilter($pattern)
     {
@@ -127,7 +127,7 @@ class Config implements \IteratorAggregate
      *
      * @param \ClassPreloader\Parser\AbstractNodeVisitor $visitor
      *
-     * @return $this
+     * @return \ClassPreloader\Config
      */
     public function addVisitor(AbstractNodeVisitor $visitor)
     {
