@@ -40,7 +40,7 @@ class ClassList
      */
     public function clear()
     {
-        $this->head = new ClassNode(null);
+        $this->head = new ClassNode();
         $this->current = $this->head;
     }
 
