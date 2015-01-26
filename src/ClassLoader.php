@@ -52,7 +52,7 @@ class ClassLoader
      */
     public static function getIncludes($func)
     {
-        $loader = new self();
+        $loader = new static();
         call_user_func($func, $loader);
         $loader->unregister();
 
