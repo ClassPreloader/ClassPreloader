@@ -189,8 +189,8 @@ EOT;
             ),
             array(
                 array(
-                    '--config'   => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
-                    '--output'   => $out,
+                    '--config'        => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--output'        => $out,
                     '--skip_dir_file' => true,
                 ),
                 $expectedSkip,
