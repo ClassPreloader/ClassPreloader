@@ -1,7 +1,7 @@
 {
     "name": "classpreloader/classpreloader",
     "description": "Helps class loading performance by generating a single PHP file containing all of the autoloaded files for a specific use case",
-    "keywords": ["autoload","class","preload"],
+    "keywords": ["autoload", "class", "preload"],
     "license": "MIT",
     "authors": [
         {
