@@ -278,7 +278,7 @@ EOF
         fclose($handle);
 
         $output->writeln("> Compiled loader written to {$outputFile}");
-        $output->writeln('- Files: ' . ($count - $countSkipped) . '/' . $count.' (skipped: '.$countSkipped.')');
+        $output->writeln('- Files: ' . ($count - $countSkipped) . '/' . $count . ' (skipped: ' . $countSkipped . ')');
         $output->writeln('- Filesize: ' . (round(filesize($outputFile) / 1024)) . ' kb');
     }
 }
