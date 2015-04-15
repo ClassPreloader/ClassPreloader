@@ -141,7 +141,7 @@ EOF
         $pretty = $this->printer->prettyPrint($stmts);
 
         // Remove the open PHP tag
-        if (substr($pretty, 5) === "<?php") {
+        if (substr($pretty, 5) === '<?php') {
             $pretty = substr($pretty, 7);
         }
 
