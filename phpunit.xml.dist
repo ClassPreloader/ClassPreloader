@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
          bootstrap="vendor/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
@@ -10,8 +12,7 @@
          stopOnError="false"
          stopOnFailure="false"
          syntaxCheck="true"
-         strict="true"
-         verbose="true">
+         verbose="true"
 >
     <testsuites>
         <testsuite name="Class Preloader Test Suite">
