@@ -22,7 +22,7 @@ Add the ClassPreloader as a dependency to your composer.json file:
 ```javascript
 {
     "require": {
-        "classpreloader/classpreloader": "1.2.*"
+        "classpreloader/classpreloader": "1.3.*"
     },
     "config": {
         "bin-dir": "bin"
@@ -98,7 +98,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```json
 {
     "require": {
-        "classpreloader/classpreloader": "1.2.*"
+        "classpreloader/classpreloader": "1.3.*"
     },
     "scripts": {
         "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
