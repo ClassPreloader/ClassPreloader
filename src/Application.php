@@ -19,7 +19,7 @@ class Application extends BaseApplication
      */
     public function __construct()
     {
-        parent::__construct('Class Preloader', '1.2');
+        parent::__construct('Class Preloader', '1.4');
 
         // Create a finder to find each non-abstract command in the filesystem
         $finder = new Finder();
