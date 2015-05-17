@@ -59,10 +59,12 @@ EOT;
         $first = <<<EOT
 <?php
 namespace {
+use Tests\Stubs\Baz;
 class Bar
 {
     public function qwerty()
     {
+        \$foo = new Baz();
         // this comment should be removed
         return '$dir';
     }
@@ -83,10 +85,12 @@ EOT;
         $second = <<<EOT
 <?php
 namespace {
+use Tests\Stubs\Baz;
 class Bar
 {
     public function qwerty()
     {
+        \$foo = new Baz();
         return '$dir';
     }
 }
@@ -106,10 +110,12 @@ EOT;
         $third = <<<EOT
 <?php
 namespace {
+use Tests\Stubs\Baz;
 class Bar
 {
     public function qwerty()
     {
+        \$foo = new Baz();
         // this comment should be removed
         return __DIR__;
     }
@@ -130,10 +136,12 @@ EOT;
         $last = <<<EOT
 <?php
 namespace {
+use Tests\Stubs\Baz;
 class Bar
 {
     public function qwerty()
     {
+        \$foo = new Baz();
         // this comment should be removed
         return '$dir';
     }
@@ -218,10 +226,43 @@ EOT;
         unlink(__DIR__ . DIRECTORY_SEPARATOR . 'output.txt');
     }
 
+    public function testIncludeCompiledFile()
+    {
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR;
+
+        $classes = array(
+            $dir . 'Bar.php',
+            $dir . 'Foo.php',
+            $dir . 'Baz.php',
+        );
+
+        $config = array(
+            '--config' => implode(',', $classes),
+            '--output' => __DIR__ . DIRECTORY_SEPARATOR . 'compiled.php',
+        );
+
+        $command = new PreCompileCommand();
+        $input = new ArrayInput($config);
+        $output = new BufferedOutput();
+
+        $command->run($input, $output);
+
+        $compiled = __DIR__ . DIRECTORY_SEPARATOR . 'compiled.php';
+
+        register_shutdown_function(function () use ($compiled) {
+            unlink($compiled);
+        });
+
+        require $compiled;
+
+        $this->assertTrue(class_exists('Tests\Stubs\Baz'));
+        $this->assertTrue(class_exists('Foo'));
+        $this->assertTrue(class_exists('Bar'));
+    }
+
     protected function normalize($string)
     {
-        $string = str_replace("\r\n", "\n", $string);
-        $string = str_replace("\r", "\n", $string);
+        $string = str_replace(array("\r\n", "\r"), "\n", $string);
         $string = preg_replace("/\n{2,}/", "\n\n", $string);
 
         return rtrim($string);
