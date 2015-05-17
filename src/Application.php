@@ -34,7 +34,7 @@ class Application extends BaseApplication
         // Create a finder to find each non-abstract command in the filesystem
         $finder = new Finder();
         $finder->files()
-            ->in(__DIR__ . '/Command')
+            ->in(__DIR__.'/Command')
             ->notName('Abstract*')
             ->name('*.php');
 
@@ -42,8 +42,8 @@ class Application extends BaseApplication
         foreach ($finder as $file) {
             $filename = str_replace('\\', '/', $file->getRealpath());
             $pos = strripos($filename, '/ClassPreloader/') + strlen('/ClassPreloader/src/');
-            $class = __NAMESPACE__ . '\\'
-                . substr(str_replace('/', '\\', substr($filename, $pos)), 0, -4);
+            $class = __NAMESPACE__.'\\'
+                .substr(str_replace('/', '\\', substr($filename, $pos)), 0, -4);
             $this->add(new $class());
         }
     }

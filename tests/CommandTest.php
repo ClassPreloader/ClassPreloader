@@ -39,11 +39,11 @@ class CommandTest extends PHPUnit_Framework_TestCase
 
     public function commandProvider()
     {
-        $out = __DIR__ . DIRECTORY_SEPARATOR . 'output.txt';
-        $bar = $file = __DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'Bar.php';
-        $foo = $file = __DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'Foo.php';
-        $dir = str_replace('\\', '\\\\', __DIR__ . DIRECTORY_SEPARATOR . 'stubs');
-        $file = str_replace('\\', '\\\\', __DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'Foo.php');
+        $out = __DIR__.DIRECTORY_SEPARATOR.'output.txt';
+        $bar = $file = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php';
+        $foo = $file = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php';
+        $dir = str_replace('\\', '\\\\', __DIR__.DIRECTORY_SEPARATOR.'stubs');
+        $file = str_replace('\\', '\\\\', __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php');
 
         $expected = <<<EOT
 > Loading configuration file
@@ -172,7 +172,7 @@ EOT;
         return array(
             array(
                 array(
-                    '--config' => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--config' => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output' => $out,
                 ),
                 $expected,
@@ -180,7 +180,7 @@ EOT;
             ),
             array(
                 array(
-                    '--config'         => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--config'         => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'         => $out,
                     '--strip_comments' => true,
                 ),
@@ -189,7 +189,7 @@ EOT;
             ),
             array(
                 array(
-                    '--config'  => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--config'  => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'  => $out,
                     '--fix_dir' => false,
                 ),
@@ -198,7 +198,7 @@ EOT;
             ),
             array(
                 array(
-                    '--config'   => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--config'   => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'   => $out,
                     '--fix_file' => false,
                 ),
@@ -207,7 +207,7 @@ EOT;
             ),
             array(
                 array(
-                    '--config'        => __DIR__ . DIRECTORY_SEPARATOR . 'classlist.php',
+                    '--config'        => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'        => $out,
                     '--skip_dir_file' => true,
                 ),
@@ -229,26 +229,26 @@ EOT;
         $this->assertSame(0, $command->run($input, $output));
         $this->assertSame($this->normalize($expected), $this->normalize($output->fetch()));
 
-        $contents = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'output.txt');
+        $contents = file_get_contents(__DIR__.DIRECTORY_SEPARATOR.'output.txt');
 
         $this->assertSame($this->normalize($compiled), $this->normalize($contents));
 
-        unlink(__DIR__ . DIRECTORY_SEPARATOR . 'output.txt');
+        unlink(__DIR__.DIRECTORY_SEPARATOR.'output.txt');
     }
 
     public function testIncludeCompiledFile()
     {
-        $dir = __DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR;
+        $dir = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR;
 
         $classes = array(
-            $dir . 'Bar.php',
-            $dir . 'Foo.php',
-            $dir . 'Baz.php',
+            $dir.'Bar.php',
+            $dir.'Foo.php',
+            $dir.'Baz.php',
         );
 
         $config = array(
             '--config' => implode(',', $classes),
-            '--output' => __DIR__ . DIRECTORY_SEPARATOR . 'compiled.php',
+            '--output' => __DIR__.DIRECTORY_SEPARATOR.'compiled.php',
         );
 
         $command = new PreCompileCommand();
@@ -257,7 +257,7 @@ EOT;
 
         $command->run($input, $output);
 
-        $compiled = __DIR__ . DIRECTORY_SEPARATOR . 'compiled.php';
+        $compiled = __DIR__.DIRECTORY_SEPARATOR.'compiled.php';
 
         register_shutdown_function(function () use ($compiled) {
             unlink($compiled);

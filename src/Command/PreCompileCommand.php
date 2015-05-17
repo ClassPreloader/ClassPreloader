@@ -170,7 +170,7 @@ EOF
     protected function getCodeWrappedIntoNamespace(array $parsed, $pretty)
     {
         if ($this->parsedCodeHasNamespaces($parsed)) {
-            $pretty = preg_replace('/^\s*(namespace.*);/i', '${1} {', $pretty, 1) . "\n}\n";
+            $pretty = preg_replace('/^\s*(namespace.*);/i', '${1} {', $pretty, 1)."\n}\n";
         } else {
             $pretty = sprintf("namespace {\n%s\n}\n", $pretty);
         }
@@ -237,7 +237,7 @@ EOF
 
         // Ensure absolute paths are resolved
         if (!$filesystem->isAbsolutePath($config)) {
-            $config = getcwd() . '/' . $config;
+            $config = getcwd().'/'.$config;
         }
 
         // Ensure that the config file exists
@@ -273,7 +273,7 @@ EOF
     {
         $dir = dirname($outputFile);
         if (!is_dir($dir) && !mkdir($dir, 0777, true)) {
-            throw new \RuntimeException('Unable to create directory ' . $dir);
+            throw new \RuntimeException('Unable to create directory '.$dir);
         }
     }
 
@@ -295,7 +295,7 @@ EOF
         $outputFile = $this->input->getOption('output');
         $config = $this->input->getOption('config');
         $files = $this->getFileList($config);
-        $output->writeLn('- Found ' . count($files) . ' files');
+        $output->writeLn('- Found '.count($files).' files');
 
         // Make sure that the output dir can be used or create it
         $this->prepareOutput($outputFile);
@@ -314,17 +314,17 @@ EOF
             $count++;
             try {
                 $code = $this->getCode($file);
-                $this->output->writeln('- Writing ' . $file);
-                fwrite($handle, $code . "\n");
+                $this->output->writeln('- Writing '.$file);
+                fwrite($handle, $code."\n");
             } catch (SkipFileException $ex) {
                 $countSkipped++;
-                $this->output->writeln('- Skipping ' . $file);
+                $this->output->writeln('- Skipping '.$file);
             }
         }
         fclose($handle);
 
         $output->writeln("> Compiled loader written to {$outputFile}");
-        $output->writeln('- Files: ' . ($count - $countSkipped) . '/' . $count . ' (skipped: ' . $countSkipped . ')');
-        $output->writeln('- Filesize: ' . (round(filesize($outputFile) / 1024)) . ' kb');
+        $output->writeln('- Files: '.($count - $countSkipped).'/'.$count.' (skipped: '.$countSkipped.')');
+        $output->writeln('- Filesize: '.(round(filesize($outputFile) / 1024)).' kb');
     }
 }
