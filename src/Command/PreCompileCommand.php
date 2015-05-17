@@ -8,6 +8,7 @@ use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
 use ClassPreloader\Parser\NodeTraverser;
 use PhpParser\Lexer;
+use PhpParser\Node\Stmt\Namespace_ as NamespaceNode;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 use Symfony\Component\Console\Command\Command;
@@ -145,12 +146,47 @@ EOF
             $pretty = substr($pretty, 7);
         }
 
-        // Add a wrapping namespace if needed
-        if (strpos($pretty, 'namespace ') === false) {
-            $pretty = "namespace {\n" . $pretty . "\n}\n";
+        return $this->getCodeWrappedIntoNamespace($parsed, $pretty);
+    }
+
+    /**
+     * Wrap the code into a namespace.
+     *
+     * @param array  $parsed
+     * @param string $pretty
+     *
+     * @return string
+     */
+    protected function getCodeWrappedIntoNamespace(array $parsed, $pretty)
+    {
+        if ($this->parsedCodeHasNamespaces($parsed)) {
+            $pretty = preg_replace('/^\s*(namespace.*);/i', '${1} {', $pretty, 1) . "\n}\n";
+        } else {
+            $pretty = sprintf("namespace {\n%s\n}\n", $pretty);
         }
 
-        return $pretty;
+        return preg_replace('/(?<!.)[\r\n]+/', '', $pretty);
+    }
+
+    /**
+     * Check parsed code for having namespaces.
+     *
+     * @param array $parsed
+     *
+     * @return bool
+     */
+    protected function parsedCodeHasNamespaces(array $parsed)
+    {
+        // Namespaces can only be on first level in the code,
+        // so we make only check on it.
+        $node = array_filter(
+            $parsed,
+            function ($value) {
+                return $value instanceof NamespaceNode;
+            }
+        );
+
+        return !empty($node);
     }
 
     /**
