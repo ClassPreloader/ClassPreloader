@@ -13,13 +13,14 @@
 namespace ClassPreloader;
 
 use ClassPreloader\Parser\AbstractNodeVisitor;
+use IteratorAggregate;
 
 /**
  * This is the config class.
  *
  * This contains all the class preloader configuration.
  */
-class Config implements \IteratorAggregate
+class Config implements IteratorAggregate
 {
     /**
      * The array of AbstractNodeVisitor objects that visit nodes.
