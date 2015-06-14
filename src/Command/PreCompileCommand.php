@@ -300,8 +300,10 @@ EOF
         // Make sure that the output dir can be used or create it
         $this->prepareOutput($outputFile);
 
-        if (!$handle = fopen($input->getOption('output'), 'w')) {
-            throw new \RuntimeException("Unable to open {$outputFile} for writing");
+        $tmpFile = $outputFile . '.tmp';
+
+        if (!$handle = fopen($tmpFile, 'w')) {
+            throw new \RuntimeException("Unable to open {$tmpFile} for writing");
         }
 
         // Write the first line of the output
@@ -323,7 +325,13 @@ EOF
         }
         fclose($handle);
 
-        $output->writeln("> Compiled loader written to {$outputFile}");
+        $output->writeln("> Compiled loader written to {$tmpFile}");
+
+        if (!rename($tmpFile, $outputFile)) {
+            throw new \RuntimeException("Unable to copy {$tmpFile} to {$outputFile} for writing");
+        }
+
+        $output->writeln("> Compiled loader copied to {$outputFile}");
         $output->writeln('- Files: '.($count - $countSkipped).'/'.$count.' (skipped: '.$countSkipped.')');
         $output->writeln('- Filesize: '.(round(filesize($outputFile) / 1024)).' kb');
     }
