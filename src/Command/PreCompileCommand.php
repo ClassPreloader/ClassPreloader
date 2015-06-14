@@ -300,7 +300,7 @@ EOF
         // Make sure that the output dir can be used or create it
         $this->prepareOutput($outputFile);
 
-        $tmpFile = $outputFile . '.tmp';
+        $tmpFile = $outputFile.'.tmp';
 
         if (!$handle = fopen($tmpFile, 'w')) {
             throw new \RuntimeException("Unable to open {$tmpFile} for writing");
@@ -331,7 +331,7 @@ EOF
 
             // rename() fails with PHP4 and PHP5 under Windows if the destination file exists
             unlink($outputFile);
-            if (!rename($tmpFile, $outputFile)) {            
+            if (!rename($tmpFile, $outputFile)) {
                 throw new \RuntimeException("Unable to copy {$tmpFile} to {$outputFile} for writing");
             }
         }
