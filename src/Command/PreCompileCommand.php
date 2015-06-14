@@ -326,7 +326,6 @@ EOF
         fclose($handle);
 
         if (!rename($tmpFile, $outputFile)) {
-
             // rename() fails with PHP4 and PHP5 under Windows if the destination file exists
             unlink($outputFile);
             if (!rename($tmpFile, $outputFile)) {
