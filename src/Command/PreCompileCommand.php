@@ -328,7 +328,12 @@ EOF
         $output->writeln("> Compiled loader written to {$tmpFile}");
 
         if (!rename($tmpFile, $outputFile)) {
-            throw new \RuntimeException("Unable to copy {$tmpFile} to {$outputFile} for writing");
+
+            // rename() fails with PHP4 and PHP5 under Windows if the destination file exists
+            unlink($outputFile);
+            if (!rename($tmpFile, $outputFile)) {            
+                throw new \RuntimeException("Unable to copy {$tmpFile} to {$outputFile} for writing");
+            }
         }
 
         $output->writeln("> Compiled loader copied to {$outputFile}");
