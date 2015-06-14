@@ -325,8 +325,6 @@ EOF
         }
         fclose($handle);
 
-        $output->writeln("> Compiled loader written to {$tmpFile}");
-
         if (!rename($tmpFile, $outputFile)) {
 
             // rename() fails with PHP4 and PHP5 under Windows if the destination file exists
@@ -336,7 +334,7 @@ EOF
             }
         }
 
-        $output->writeln("> Compiled loader copied to {$outputFile}");
+        $output->writeln("> Compiled loader written to {$outputFile}");
         $output->writeln('- Files: '.($count - $countSkipped).'/'.$count.' (skipped: '.$countSkipped.')');
         $output->writeln('- Filesize: '.(round(filesize($outputFile) / 1024)).' kb');
     }
