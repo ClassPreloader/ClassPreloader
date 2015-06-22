@@ -12,8 +12,8 @@
 
 namespace ClassPreloader\Commands;
 
-use ClassPreloader\Config;
 use ClassPreloader\ClassPreloader;
+use ClassPreloader\Config;
 use ClassPreloader\Exceptions\SkipFileException;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
