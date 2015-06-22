@@ -169,52 +169,52 @@ class Foo extends Bar
 }
 EOT;
 
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     '--config' => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output' => $out,
-                ),
+                ],
                 $expected,
                 $first,
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     '--config'         => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'         => $out,
                     '--strip_comments' => true,
-                ),
+                ],
                 $expected,
                 $second,
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     '--config'  => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'  => $out,
                     '--fix_dir' => false,
-                ),
+                ],
                 $expected,
                 $third,
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     '--config'   => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'   => $out,
                     '--fix_file' => false,
-                ),
+                ],
                 $expected,
                 $last,
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     '--config'        => __DIR__.DIRECTORY_SEPARATOR.'classlist.php',
                     '--output'        => $out,
                     '--skip_dir_file' => true,
-                ),
+                ],
                 $expectedSkip,
                 '<?php',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -240,16 +240,16 @@ EOT;
     {
         $dir = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR;
 
-        $classes = array(
+        $classes = [
             $dir.'Bar.php',
             $dir.'Foo.php',
             $dir.'Baz.php',
-        );
+        ];
 
-        $config = array(
+        $config = [
             '--config' => implode(',', $classes),
             '--output' => __DIR__.DIRECTORY_SEPARATOR.'compiled.php',
-        );
+        ];
 
         $command = new PreCompileCommand();
         $input = new ArrayInput($config);
@@ -272,7 +272,7 @@ EOT;
 
     protected function normalize($string)
     {
-        $string = str_replace(array("\r\n", "\r"), "\n", $string);
+        $string = str_replace(["\r\n", "\r"], "\n", $string);
         $string = preg_replace("/\n{2,}/", "\n\n", $string);
 
         return rtrim($string);

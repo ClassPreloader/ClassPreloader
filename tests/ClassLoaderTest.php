@@ -21,9 +21,9 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
             new Bar();
         });
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
-        );
+        ];
 
         $this->assertInstanceOf('ClassPreloader\Config', $config);
         $this->assertSame($expected, $config->getFilenames());
@@ -39,10 +39,10 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
             new Foo();
         });
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
-        );
+        ];
 
         $this->assertInstanceOf('ClassPreloader\Config', $config);
         $this->assertSame($expected, $config->getFilenames());
@@ -65,9 +65,9 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $loader->loadClass('Bar');
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
-        );
+        ];
 
         $this->assertSame($expected, $loader->getFilenames());
     }
@@ -82,10 +82,10 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $loader->loadClass('Foo');
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
-        );
+        ];
 
         $this->assertSame($expected, $loader->getFilenames());
 
@@ -104,9 +104,9 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $loader->loadClass('Foo');
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
-        );
+        ];
 
         $this->assertSame($expected, $loader->getFilenames());
     }
@@ -126,10 +126,10 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(true); // force load in phpunit classes
 
-        $expected = array(
+        $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
-        );
+        ];
 
         $this->assertSame($expected, $loader->getFilenames()); // phpunit classes not present
     }
