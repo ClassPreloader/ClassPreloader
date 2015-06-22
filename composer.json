@@ -33,7 +33,7 @@
     "bin": ["classpreloader.php"],
     "extra": {
         "branch-alias": {
-            "dev-master": "1.4-dev"
+            "dev-next-gen": "2.0-dev"
         }
     }
 }
