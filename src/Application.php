@@ -12,8 +12,8 @@
 
 namespace ClassPreloader;
 
-use Symfony\Component\Console\Application as BaseApplication;
 use ClassPreloader\Command\PreCompileCommand;
+use Symfony\Component\Console\Application as BaseApplication;
 
 /**
  * This is the application class.
