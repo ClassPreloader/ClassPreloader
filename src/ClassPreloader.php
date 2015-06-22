@@ -140,7 +140,7 @@ class ClassPreLoader
             throw new RuntimeException("Unable to create directory $dir");
         }
 
-        $handle = fopen($output, 'w')
+        $handle = fopen($output, 'w');
 
         if (!$handle) {
             throw new RuntimeException("Unable to open $output for writing");
