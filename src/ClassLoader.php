@@ -12,9 +12,6 @@
 
 namespace ClassPreloader;
 
-require_once __DIR__.'/ClassNode.php';
-require_once __DIR__.'/ClassList.php';
-
 /**
  * This is the class loader class.
  *
