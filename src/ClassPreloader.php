@@ -13,7 +13,6 @@
 namespace ClassPreloader;
 
 use ClassPreloader\Parser\NodeTraverser;
-use InvalidArgumentException;
 use PhpParser\Node\Stmt\Namespace_ as NamespaceNode;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
@@ -61,66 +60,6 @@ class ClassPreLoader
         $this->printer = $printer;
         $this->parser = $parser;
         $this->traverser = $traverser;
-    }
-
-    /**
-     * Get a list of files in order.
-     *
-     * @param mixed $config
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return array
-     */
-    public function getFileList($config)
-    {
-        if (strpos($config, ',')) {
-            return array_filter(explode(',', $config));
-        }
-
-        // Ensure absolute paths are resolved
-        if (!$this->isAbsolutePath($config)) {
-            $config = getcwd().'/'.$config;
-        }
-
-        // Ensure that the config file exists
-        if (!file_exists($config)) {
-            throw new InvalidArgumentException(sprintf('Configuration file "%s" does not exist.', $config));
-        }
-
-        $result = require $config;
-
-        if ($result instanceof Config) {
-            foreach ($result->getVisitors() as $visitor) {
-                $this->traverser->addVisitor($visitor);
-            }
-
-            return $result;
-        }
-
-        if (is_array($result)) {
-            return $result;
-        }
-
-        throw new InvalidArgumentException('Config must return an array of filenames or a Config object');
-    }
-
-    /**
-     * Returns whether the file path is an absolute path.
-     *
-     * @param string $file
-     *
-     * @return bool
-     */
-    protected function isAbsolutePath($file)
-    {
-        return (strspn($file, '/\\', 0, 1)
-            || (strlen($file) > 3 && ctype_alpha($file[0])
-                && substr($file, 1, 1) === ':'
-                && (strspn($file, '/\\', 2, 1))
-            )
-            || null !== parse_url($file, PHP_URL_SCHEME)
-        );
     }
 
     /**
