@@ -23,7 +23,7 @@ use RuntimeException;
  *
  * This is the main point of entry for interacting with this package.
  */
-class ClassPreLoader
+class ClassPreloader
 {
     /**
      * The printer.
@@ -110,7 +110,6 @@ class ClassPreLoader
         } else {
             $content = php_strip_whitespace($file);
         }
-
 
         $parsed = $this->parser->parse($content);
         $stmts = $this->traverser->traverseFile($parsed, $file);
