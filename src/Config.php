@@ -27,28 +27,28 @@ class Config implements IteratorAggregate
      *
      * @var array
      */
-    protected $visitors = array();
+    protected $visitors = [];
 
     /**
      * The array of file names.
      *
      * @var array
      */
-    protected $filenames = array();
+    protected $filenames = [];
 
     /**
      * The array of exclusive filters.
      *
      * @var array
      */
-    protected $exclusiveFilters = array();
+    protected $exclusiveFilters = [];
 
     /**
      * The array of inclusive filters.
      *
      * @var array
      */
-    protected $inclusiveFilters = array();
+    protected $inclusiveFilters = [];
 
     /**
      * Add the filename owned by the config.
@@ -71,7 +71,7 @@ class Config implements IteratorAggregate
      */
     public function getFilenames()
     {
-        $filenames = array();
+        $filenames = [];
         foreach ($this->filenames as $f) {
             foreach ($this->inclusiveFilters as $filter) {
                 if (!preg_match($filter, $f)) {

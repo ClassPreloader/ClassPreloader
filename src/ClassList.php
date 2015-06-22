@@ -103,7 +103,7 @@ class ClassList
      */
     public function getClasses()
     {
-        $classes = array();
+        $classes = [];
         $current = $this->head;
         while ($current && $current->value) {
             $classes[] = $current->value;
