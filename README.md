@@ -19,10 +19,10 @@ Installation
 
 Add the ClassPreloader as a dependency to your composer.json file:
 
-```javascript
+```json
 {
     "require": {
-        "classpreloader/classpreloader": "1.4.*"
+        "classpreloader/classpreloader": "2.0.*"
     },
     "config": {
         "bin-dir": "bin"
@@ -98,7 +98,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```json
 {
     "require": {
-        "classpreloader/classpreloader": "1.4.*"
+        "classpreloader/classpreloader": "2.0.*"
     },
     "scripts": {
         "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
