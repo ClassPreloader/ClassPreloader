@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Command;
+namespace ClassPreloader\Commands;
 
 use ClassPreloader\Config;
-use ClassPreloader\Exception\SkipFileException;
+use ClassPreloader\Exceptions\SkipFileException;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
 use ClassPreloader\Parser\NodeTraverser;

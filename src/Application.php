@@ -12,7 +12,7 @@
 
 namespace ClassPreloader;
 
-use ClassPreloader\Command\PreCompileCommand;
+use ClassPreloader\Commands\PreCompileCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 
 /**

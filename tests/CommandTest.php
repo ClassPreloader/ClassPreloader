@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-use ClassPreloader\Command\PreCompileCommand;
+use ClassPreloader\Commands\PreCompileCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 

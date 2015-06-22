@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Exception;
+namespace ClassPreloader\Exceptions;
 
 use Exception;
 

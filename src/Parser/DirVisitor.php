@@ -12,7 +12,7 @@
 
 namespace ClassPreloader\Parser;
 
-use ClassPreloader\Exception\SkipFileException;
+use ClassPreloader\Exceptions\SkipFileException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\Dir as DirNode;
 use PhpParser\Node\Scalar\String_ as StringNode;
