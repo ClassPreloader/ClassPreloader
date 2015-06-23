@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-use ClassPreloader\Commands\PreCompileCommand;
+use ClassPreloader\Console\PreCompileCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -21,7 +21,7 @@ class CommandTest extends PHPUnit_Framework_TestCase
     /**
      * This additional autoloader is needed to test if the class is not put multiple times into the cache.
      *
-     * See https://github.com/mtdowling/ClassPreloader/pull/35.
+     * See https://github.com/ClassPreloader/ClassPreloader/pull/35.
      */
     public function setUp()
     {
@@ -47,7 +47,7 @@ class CommandTest extends PHPUnit_Framework_TestCase
 
         $expected = <<<EOT
 > Loading configuration file
-- Found 1 files
+- Found 2 files
 > Compiling classes
 - Writing $bar
 - Writing $foo
@@ -57,7 +57,7 @@ class CommandTest extends PHPUnit_Framework_TestCase
 EOT;
         $expectedSkip = <<<EOT
 > Loading configuration file
-- Found 1 files
+- Found 2 files
 > Compiling classes
 - Skipping $bar
 - Skipping $foo

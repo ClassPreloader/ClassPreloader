@@ -10,7 +10,9 @@
  * file that was distributed with this source code.
  */
 
-return ClassPreloader\ClassLoader::getIncludes(function (ClassPreloader\ClassLoader $loader) {
+use ClassPreloader\ClassLoader;
+
+return ClassLoader::getIncludes(function (ClassLoader $loader) {
     $loader->register();
     new Foo();
 });

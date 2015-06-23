@@ -10,10 +10,9 @@
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Commands;
+namespace ClassPreloader\Console;
 
 use ClassPreloader\ClassPreloader;
-use ClassPreloader\Config;
 use ClassPreloader\Exceptions\SkipFileException;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
@@ -73,7 +72,7 @@ EOF
 
         $output->writeln('> Loading configuration file');
         $config = $input->getOption('config');
-        $files = $this->getFileList($config);
+        $files = (new ConfigResolver)->getFileList($config);
         $output->writeLn('- Found '.count($files).' files');
 
         $preloader = new ClassPreloader(new PrettyPrinter(), new Parser(new Lexer()), $this->getTraverser($input));
@@ -118,72 +117,12 @@ EOF
     protected function validateCommand(InputInterface $input)
     {
         if (!$input->getOption('output')) {
-            throw new InvalidArgumentException('An output option is required');
+            throw new InvalidArgumentException('An output option is required.');
         }
 
         if (!$input->getOption('config')) {
-            throw new InvalidArgumentException('A config option is required');
+            throw new InvalidArgumentException('A config option is required.');
         }
-    }
-
-    /**
-     * Get a list of files in order.
-     *
-     * @param mixed $config
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return array
-     */
-    protected function getFileList($config)
-    {
-        if (strpos($config, ',')) {
-            return array_filter(explode(',', $config));
-        }
-
-        // Ensure absolute paths are resolved
-        if (!$this->isAbsolutePath($config)) {
-            $config = getcwd().'/'.$config;
-        }
-
-        // Ensure that the config file exists
-        if (!file_exists($config)) {
-            throw new InvalidArgumentException(sprintf('Configuration file "%s" does not exist.', $config));
-        }
-
-        $result = require $config;
-
-        if ($result instanceof Config) {
-            foreach ($result->getVisitors() as $visitor) {
-                $this->traverser->addVisitor($visitor);
-            }
-
-            return $result;
-        }
-
-        if (is_array($result)) {
-            return $result;
-        }
-
-        throw new InvalidArgumentException('Config must return an array of filenames or a Config object');
-    }
-
-    /**
-     * Returns whether the file path is an absolute path.
-     *
-     * @param string $file
-     *
-     * @return bool
-     */
-    protected function isAbsolutePath($file)
-    {
-        return (strspn($file, '/\\', 0, 1)
-            || (strlen($file) > 3 && ctype_alpha($file[0])
-                && substr($file, 1, 1) === ':'
-                && (strspn($file, '/\\', 2, 1))
-            )
-            || null !== parse_url($file, PHP_URL_SCHEME)
-        );
     }
 
     /**

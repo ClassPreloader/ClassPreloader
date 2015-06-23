@@ -10,9 +10,8 @@
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader;
+namespace ClassPreloader\Console;
 
-use ClassPreloader\Commands\PreCompileCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 
 /**

@@ -12,23 +12,11 @@
 
 namespace ClassPreloader;
 
-use ClassPreloader\Parser\AbstractNodeVisitor;
-use IteratorAggregate;
-
 /**
  * This is the config class.
- *
- * This contains all the class preloader configuration.
  */
-class Config implements IteratorAggregate
+class Config
 {
-    /**
-     * The array of AbstractNodeVisitor objects that visit nodes.
-     *
-     * @var array
-     */
-    protected $visitors = [];
-
     /**
      * The array of file names.
      *
@@ -90,16 +78,6 @@ class Config implements IteratorAggregate
     }
 
     /**
-     * Get an iterator for the filenames.
-     *
-     * @return \ArrayIterator
-     */
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->getFilenames());
-    }
-
-    /**
      * Add a filter used to filter out file names matching the pattern.
      *
      * We're filtering the classes using a regular expression.
@@ -129,31 +107,5 @@ class Config implements IteratorAggregate
         $this->inclusiveFilters[] = $pattern;
 
         return $this;
-    }
-
-    /**
-     * Add a visitor.
-     *
-     * It will visit each node when traversing the node list of each file.
-     *
-     * @param \ClassPreloader\Parser\AbstractNodeVisitor $visitor
-     *
-     * @return \ClassPreloader\Config
-     */
-    public function addVisitor(AbstractNodeVisitor $visitor)
-    {
-        $this->visitors[] = $visitor;
-
-        return $this;
-    }
-
-    /**
-     * Get an array of node visitors.
-     *
-     * @return array
-     */
-    public function getVisitors()
-    {
-        return $this->visitors;
     }
 }

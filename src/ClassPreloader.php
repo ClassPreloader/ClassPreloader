@@ -76,13 +76,13 @@ class ClassPreloader
         $dir = dirname($output);
 
         if (!is_dir($dir) && !mkdir($dir, 0777, true)) {
-            throw new RuntimeException("Unable to create directory $dir");
+            throw new RuntimeException("Unable to create directory $dir.");
         }
 
         $handle = fopen($output, 'w');
 
         if (!$handle) {
-            throw new RuntimeException("Unable to open $output for writing");
+            throw new RuntimeException("Unable to open $output for writing.");
         }
 
         fwrite($handle, "<?php\n");
@@ -102,7 +102,7 @@ class ClassPreloader
     public function getCode($file, $comments = true)
     {
         if (!is_readable($file)) {
-            throw new RuntimeException("Cannot open {$file} for reading");
+            throw new RuntimeException("Cannot open $file for reading.");
         }
 
         if ($comments) {
