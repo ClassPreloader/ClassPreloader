@@ -17,18 +17,7 @@ This tool should only be used for specific use cases. There is a tradeoff betwee
 Installation
 ------------
 
-Add the ClassPreloader as a dependency to your composer.json file:
-
-```json
-{
-    "require": {
-        "classpreloader/classpreloader": "2.0.*"
-    },
-    "config": {
-        "bin-dir": "bin"
-    }
-}
-```
+Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "2.0.*"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "1.0.*"` to the require block.
 
 Using the tool
 --------------
@@ -52,7 +41,7 @@ Writing a config file
 
 Creating a PHP based configuration file is fairly simple. Just include the `vendor/classpreloader/classpreloader/src/ClassLoader.php` file and call the `ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassLoader` object and register the passed in object's autoloader using `$loader->register()`. It is important to register the `ClassLoader` autoloader after all other autoloaders are registered.
 
-An array or `\ClassPreloader\Config` must be returned from the config file. You can attach custom node visitors if you need to perform any sort of translation on each matching file before writing it to the output.
+An array or `ClassPreloader\Config` must be returned from the config file. You can attach custom node visitors if you need to perform any sort of translation on each matching file before writing it to the output.
 
 ```php
 <?php
@@ -98,7 +87,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```json
 {
     "require": {
-        "classpreloader/classpreloader": "2.0.*"
+        "classpreloader/console": "1.0.*"
     },
     "scripts": {
         "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
