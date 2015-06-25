@@ -28,6 +28,9 @@
     "autoload-dev": {
         "classmap": ["tests/stubs/"]
     },
+    "config": {
+        "preferred-install": "dist"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
