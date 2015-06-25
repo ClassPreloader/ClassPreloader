@@ -49,9 +49,9 @@ class ClassPreloader
     /**
      * Create a new class preloader.
      *
-     * @param \PhpParser\PrettyPrinter\Standard|null $printer
-     * @param \PhpParser\Parser|null                 $parser
-     * @param \ClassPreloader\Parser\NodeTraverser   $traverser
+     * @param \PhpParser\PrettyPrinter\Standard    $printer
+     * @param \PhpParser\Parser                    $parser
+     * @param \ClassPreloader\Parser\NodeTraverser $traverser
      *
      * @return void
      */

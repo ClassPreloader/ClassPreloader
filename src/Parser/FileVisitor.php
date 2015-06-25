@@ -48,7 +48,9 @@ class FileVisitor extends AbstractNodeVisitor
      *
      * @param \PhpParser\Node $node
      *
-     * @return void
+     * @throws \ClassPreloader\Exceptions\SkipFileException
+     *
+     * @return \PhpParser\Node\Scalar\String_|null
      */
     public function enterNode(Node $node)
     {
