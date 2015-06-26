@@ -98,7 +98,7 @@ class ClassLoader
      *
      * @param string $class
      *
-     * @return bool|null
+     * @return bool
      */
     public function loadClass($class)
     {
@@ -139,17 +139,9 @@ class ClassLoader
                     $files[] = $r->getFileName();
                 }
             } catch (\ReflectionException $e) {
-                // We ignore all exceptions related to reflection,
-                // because in some cases class can't exists. This
-                // can be if you use in your code constructions like
-                //
-                // if (class_exists('SomeClass')) { // <-- here will trigger autoload
-                //      class SomeSuperClass extends SomeClass {
-                //      }
-                // }
-                //
-                // We ignore all problems with classes, interfaces and
-                // traits.
+                // We ignore all exceptions related to reflection because in
+                // some cases class doesn't need to exist. We're ignoring all
+                // problems with classes, interfaces and traits.
             }
         }
 
