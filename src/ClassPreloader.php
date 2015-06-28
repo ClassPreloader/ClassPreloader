@@ -101,6 +101,10 @@ class ClassPreloader
      */
     public function getCode($file, $comments = true)
     {
+        if (!is_string($file) || empty($file)) {
+            throw new RuntimeException("Invalid filename provided.");
+        }
+
         if (!is_readable($file)) {
             throw new RuntimeException("Cannot open $file for reading.");
         }
