@@ -15,9 +15,9 @@ namespace ClassPreloader\Exceptions;
 use Exception;
 
 /**
- * This is the skip file exception class.
+ * This is the file constant exception class.
  */
-class SkipFileException extends Exception
+class FileConstantException extends Exception implements VisitorExceptionInterface
 {
     //
 }

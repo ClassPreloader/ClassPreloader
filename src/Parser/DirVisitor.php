@@ -12,7 +12,7 @@
 
 namespace ClassPreloader\Parser;
 
-use ClassPreloader\Exceptions\SkipFileException;
+use ClassPreloader\Exceptions\DirConstantException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\Dir as DirNode;
 use PhpParser\Node\Scalar\String_ as StringNode;
@@ -48,7 +48,7 @@ class DirVisitor extends AbstractNodeVisitor
      *
      * @param \PhpParser\Node $node
      *
-     * @throws \ClassPreloader\Exceptions\SkipFileException
+     * @throws \ClassPreloader\Exceptions\DirConstantException
      *
      * @return \PhpParser\Node\Scalar\String_|null
      */
@@ -56,7 +56,7 @@ class DirVisitor extends AbstractNodeVisitor
     {
         if ($node instanceof DirNode) {
             if ($this->skip) {
-                throw new SkipFileException('__DIR__ constant found, skipping...');
+                throw new DirConstantException();
             }
 
             return new StringNode($this->getDir());
