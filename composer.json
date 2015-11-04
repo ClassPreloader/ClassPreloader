@@ -35,5 +35,7 @@
         "branch-alias": {
             "dev-new": "3.0-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
