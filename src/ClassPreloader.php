@@ -96,7 +96,6 @@ class ClassPreloader
             fwrite($handle, "<?php\n");
         }
 
-
         return $handle;
     }
 
