@@ -32,7 +32,7 @@ class DirVisitor extends AbstractNodeVisitor
     protected $skip = false;
 
     /**
-     * Create a new directory visitor.
+     * Create a new directory visitor instance.
      *
      * @param bool $skip
      *

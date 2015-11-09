@@ -31,6 +31,8 @@ class Factory
     /**
      * Create a new class preloader instance.
      *
+     * Any options provided determine how the node traverser is setup.
+     *
      * @param bool[] $options
      *
      * @return \ClassPreloader\ClassPreloader

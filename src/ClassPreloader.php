@@ -47,7 +47,7 @@ class ClassPreloader
     protected $traverser;
 
     /**
-     * Create a new class preloader.
+     * Create a new class preloader instance.
      *
      * @param \PhpParser\PrettyPrinter\Standard    $printer
      * @param \PhpParser\Parser                    $parser

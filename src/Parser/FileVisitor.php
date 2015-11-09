@@ -32,7 +32,7 @@ class FileVisitor extends AbstractNodeVisitor
     protected $skip = false;
 
     /**
-     * Create a new file visitor.
+     * Create a new file visitor instance.
      *
      * @param bool $skip
      *

@@ -29,7 +29,7 @@ class ClassLoader
     public $classList;
 
     /**
-     * Create a new class loader.
+     * Create a new class loader instance.
      *
      * @return void
      */
