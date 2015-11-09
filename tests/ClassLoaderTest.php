@@ -11,6 +11,7 @@
  */
 
 use ClassPreloader\ClassLoader;
+use ClassPreloader\Config;
 
 class ClassLoaderTest extends PHPUnit_Framework_TestCase
 {
@@ -25,7 +26,7 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
         ];
 
-        $this->assertInstanceOf('ClassPreloader\Config', $config);
+        $this->assertInstanceOf(Config::class, $config);
         $this->assertSame($expected, $config->getFilenames());
     }
 
@@ -44,7 +45,7 @@ class ClassLoaderTest extends PHPUnit_Framework_TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
         ];
 
-        $this->assertInstanceOf('ClassPreloader\Config', $config);
+        $this->assertInstanceOf(Config::class, $config);
         $this->assertSame($expected, $config->getFilenames());
     }
 
