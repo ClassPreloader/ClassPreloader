@@ -74,21 +74,17 @@ class Factory
      */
     protected function getTraverser($dir, $file, $skip, $strict)
     {
-        $options = array_merge(['dir' => true, 'file' => true, 'skip' => false, 'strict' => false], $options);
-
         $traverser = new NodeTraverser();
 
-        $skip = $input->getOption('skip_dir_file');
-
-        if ($options['dir']) {
-            $traverser->addVisitor(new DirVisitor($options['skip']));
+        if ($dir) {
+            $traverser->addVisitor(new DirVisitor($skip));
         }
 
-        if ($options['file']) {
-            $traverser->addVisitor(new FileVisitor($options['skip']));
+        if ($file) {
+            $traverser->addVisitor(new FileVisitor($skip));
         }
 
-        if ($options['strict']) {
+        if (!$strict) {
             $traverser->addVisitor(new StrictTypesVisitor());
         }
 
