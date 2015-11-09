@@ -45,7 +45,7 @@ class Factory
 
         $traverser = $this->getTraverser($options['dir'], $options['file'], $options['skip'], $options['strict']);
 
-        $preloader = new ClassPreloader($printer, $parser, $traverser);
+        return new ClassPreloader($printer, $parser, $traverser);
     }
 
     /**
