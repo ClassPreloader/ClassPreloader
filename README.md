@@ -50,6 +50,8 @@ An array or `ClassPreloader\Config` must be returned from the config file. You c
 // Here's an example of creating a preloader for using Amazon DynamoDB and the
 // AWS SDK for PHP 2.
 
+require __DIR__ . '/src/ClassNode.php';
+require __DIR__ . '/src/ClassList.php';
 require __DIR__ . '/src/ClassLoader.php';
 
 use ClassPreloader\ClassLoader;
