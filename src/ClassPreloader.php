@@ -150,7 +150,7 @@ class ClassPreloader
     protected function getCodeWrappedIntoNamespace(array $parsed, $pretty)
     {
         if ($this->parsedCodeHasNamespaces($parsed)) {
-            $pretty = preg_replace('/^\s*(namespace.*);/i', '${1} {', $pretty, 1)."\n}\n";
+            $pretty = preg_replace('/^\s*(namespace.*);/im', '${1} {', $pretty, 1)."\n}\n";
         } else {
             $pretty = sprintf("namespace {\n%s\n}\n", $pretty);
         }
