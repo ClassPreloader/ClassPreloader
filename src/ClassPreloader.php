@@ -129,7 +129,7 @@ class ClassPreloader
         $pretty = $this->printer->prettyPrint($stmts);
 
         $pretty = preg_replace(
-            '#^(<\?php)?(/\*\*?.*?\*/)?[\s]*(declare[\s]*\([\s]*strict_types[\s]*=[\s]*1[\s]*\);)?#sm', 
+            '#^(<\?php)?(/\*\*?.*?\*/)?[\s]*(declare[\s]*\([\s]*strict_types[\s]*=[\s]*1[\s]*\);)?#s', 
             '', 
             $pretty
         );
