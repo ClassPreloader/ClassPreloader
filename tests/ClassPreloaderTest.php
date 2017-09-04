@@ -17,7 +17,7 @@ class ClassPreloaderTest extends PHPUnit_Framework_TestCase
             ->setMethods(['prettyPrint']);
         $parser = $this->getMockBuilder(Parser::class)
             ->disableOriginalConstructor()
-            ->setMethods(['parse']);
+            ->setMethods(['parse', 'getErrors']);
         $traverser = $this->getMockBuilder(NodeTraverser::class)
             ->disableOriginalConstructor()
             ->setMethods(['traverseFile']);
