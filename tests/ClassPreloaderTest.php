@@ -28,7 +28,7 @@ class ClassPreloaderTest extends PHPUnit_Framework_TestCase
         $printerMock->expects($this->once())
             ->method('prettyPrint')
             ->willReturn(
-                file_get_contents(__DIR__ . '/stubs/StrictClassWithComments.php')
+                file_get_contents(__DIR__.'/stubs/StrictClassWithComments.php')
             );
 
         $classPreloader = new ClassPreloader(
@@ -37,7 +37,7 @@ class ClassPreloaderTest extends PHPUnit_Framework_TestCase
             $traverserMock
         );
 
-        $code = $classPreloader->getCode(__DIR__ . '/stubs/StrictClassWithComments.php');
+        $code = $classPreloader->getCode(__DIR__.'/stubs/StrictClassWithComments.php');
 
         // $code should not have 'declare(strict_types=1)' declarations.
         $this->assertNotRegExp(

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 /**
- * Not some Class comment
+ * Not some Class comment.
  */
 class StrictClassWithComments
 {
