@@ -2,7 +2,6 @@
 /**
  * This is some copyright or file comment, popular in some libraries.
  */
-
 declare(strict_types=1);
 
 /**
