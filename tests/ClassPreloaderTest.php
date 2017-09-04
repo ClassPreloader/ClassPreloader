@@ -12,9 +12,15 @@ class ClassPreloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testStripStrictTypeDeclaration()
     {
-        $printer = $this->getMockBuilder(PrettyPrinter::class)->setMethods(['prettyPrint']);
-        $parser = $this->getMockBuilder(Parser::class)->setMethods(['parse']);
-        $traverser = $this->getMockBuilder(NodeTraverser::class)->setMethods(['traverseFile']);
+        $printer = $this->getMockBuilder(PrettyPrinter::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['prettyPrint']);
+        $parser = $this->getMockBuilder(Parser::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['parse']);
+        $traverser = $this->getMockBuilder(NodeTraverser::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['traverseFile']);
 
         $parserMock = $parser->getMock();
         $parserMock->expects($this->once())
