@@ -128,13 +128,11 @@ class ClassPreloader
         $stmts = $this->traverser->traverseFile($parsed, $file);
         $pretty = $this->printer->prettyPrint($stmts);
 
-        if (substr($pretty, 30) === '<?php declare(strict_types=1);' || substr($pretty, 30) === "<?php\ndeclare(strict_types=1);") {
-            $pretty = substr($pretty, 32);
-        } elseif (substr($pretty, 31) === "<?php\r\ndeclare(strict_types=1);") {
-            $pretty = substr($pretty, 33);
-        } elseif (substr($pretty, 5) === '<?php') {
-            $pretty = substr($pretty, 7);
-        }
+        $pretty = preg_replace(
+            '#^(<\?php)?[\s]*(/\*\*?.*?\*/)?[\s]*(declare[\s]*\([\s]*strict_types[\s]*=[\s]*1[\s]*\);)?#s',
+            '',
+            $pretty
+        );
 
         return $this->getCodeWrappedIntoNamespace($parsed, $pretty);
     }
