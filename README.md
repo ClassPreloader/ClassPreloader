@@ -105,3 +105,14 @@ You can automate the process of creating preloaders using Composer's script func
 ```
 
 Using the above composer.json file, each time the project's autoloader is recreated using the install or update command, the classpreloader.php file will be executed. This script would generate a preload.php containing the classes required to run the previously demonstrated "the_example.php" configuration file.
+
+Security
+--------
+
+If you discover a security vulnerability within this package, please send an email to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/ClassPreloader/ClassPreloader/security/policy).
+
+
+License
+-------
+
+Class Preloader is licensed under [The MIT License (MIT)](LICENSE).
