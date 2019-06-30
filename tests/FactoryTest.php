@@ -12,8 +12,9 @@
 
 use ClassPreloader\ClassPreloader;
 use ClassPreloader\Factory;
+use PHPUnit\Framework\TestCase;
 
-class FactoryTest extends PHPUnit_Framework_TestCase
+class FactoryTest extends TestCase
 {
     public function testCreate()
     {

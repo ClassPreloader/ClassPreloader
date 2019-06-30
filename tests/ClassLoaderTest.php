@@ -12,8 +12,9 @@
 
 use ClassPreloader\ClassLoader;
 use ClassPreloader\Config;
+use PHPUnit\Framework\TestCase;
 
-class ClassLoaderTest extends PHPUnit_Framework_TestCase
+class ClassLoaderTest extends TestCase
 {
     public function testGetSingleInclude()
     {

@@ -4,8 +4,9 @@ use ClassPreloader\ClassPreloader;
 use ClassPreloader\Parser\NodeTraverser;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
+use PHPUnit\Framework\TestCase;
 
-class ClassPreloaderTest extends PHPUnit_Framework_TestCase
+class ClassPreloaderTest extends TestCase
 {
     /**
      * This tests the correct detection and stripping of strict_types declarations while preloading files.
