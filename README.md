@@ -17,7 +17,7 @@ This tool should only be used for specific use cases. There is a tradeoff betwee
 Installation
 ------------
 
-Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^3.0"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^2.0"` to the require block.
+Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^4.0"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^3.0"` to the require block.
 
 Using the tool
 --------------
@@ -93,7 +93,7 @@ You can automate the process of creating preloaders using Composer's script func
 ```json
 {
     "require": {
-        "classpreloader/console": "^2.0"
+        "classpreloader/console": "^3.0"
     },
     "scripts": {
         "post-autoload-dump": "php bin/classpreloader.php compile --config=/path/to/the_example.php --output=/path/to/preload.php"
