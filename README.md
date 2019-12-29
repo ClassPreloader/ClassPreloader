@@ -4,6 +4,9 @@ Class Preloader for PHP
 This tool is used to generate a single PHP script containing all of the classes
 required for a specific use case. Using a single compiled PHP script instead of relying on autoloading can help to improve the performance of specific use cases. For example, if your application executes the same bootstrap code on every request, then you could generate a preloader (the compiled output of this tool) to reduce the cost of autoloading the required classes over and over.
 
+![Banner](https://user-images.githubusercontent.com/2829600/71563674-7467c580-2a8b-11ea-8776-4bb143a03e47.png)
+
+
 What it actually does
 ---------------------
 
