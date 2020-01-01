@@ -36,11 +36,11 @@ before_install:
 
 install:
   - travis_retry docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint composer registry.gitlab.com/grahamcampbell/php:$PHP_VERSION install --no-suggest --prefer-dist -n -o
-  - if [[ -z $RUN_PHPSTAN ]]; then travis_retry docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint composer registry.gitlab.com/grahamcampbell/php:$PHP_VERSION bin phpstan install --no-suggest --prefer-dist -n -o; fi
+  - if [[ ! -z $RUN_PHPSTAN ]]; then travis_retry docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint composer registry.gitlab.com/grahamcampbell/php:$PHP_VERSION bin phpstan install --no-suggest --prefer-dist -n -o; fi
 
 script:
-  - if [[ -z $RUN_PHPUNIT ]]; then docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint vendor/bin/phpunit registry.gitlab.com/grahamcampbell/php:$PHP_VERSION --coverage-clover build/logs/clover.xml; fi
-  - if [[ -z $RUN_PHPSTAN ]]; then docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint vendor/bin/phpstan registry.gitlab.com/grahamcampbell/php:$PHP_VERSION analyse src; fi
+  - if [[ ! -z $RUN_PHPUNIT ]]; then docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint vendor/bin/phpunit registry.gitlab.com/grahamcampbell/php:$PHP_VERSION --coverage-clover build/logs/clover.xml; fi
+  - if [[ ! -z $RUN_PHPSTAN ]]; then docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint vendor/bin/phpstan registry.gitlab.com/grahamcampbell/php:$PHP_VERSION analyse src; fi
 
 after_script:
-  - if [[ -z $RUN_PHPUNIT ]]; then travis_retry docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint ocular registry.gitlab.com/grahamcampbell/php:$PHP_VERSION code-coverage:upload --format=php-clover build/logs/clover.xml; fi
+  - if [[ ! -z $RUN_PHPUNIT ]]; then travis_retry docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint ocular registry.gitlab.com/grahamcampbell/php:$PHP_VERSION code-coverage:upload --format=php-clover build/logs/clover.xml; fi
