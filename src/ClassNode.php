@@ -52,7 +52,7 @@ final class ClassNode
      *
      * @return void
      */
-    public function __construct(string $value = null, ClassNode $prev = null)
+    public function __construct(string $value = null, self $prev = null)
     {
         $this->value = $value;
         $this->prev = $prev;

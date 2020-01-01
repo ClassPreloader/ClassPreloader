@@ -60,7 +60,7 @@ final class OutputWriter
     public static function writeOpeningTag($handle, bool $strictTypes)
     {
         if (!FileUtils::writeString($handle, $strictTypes ? "<?php declare(strict_types=1);\n" : "<?php\n")) {
-            throw new RuntimeException("Unable to write opening tag to the output file.");
+            throw new RuntimeException('Unable to write opening tag to the output file.');
         }
     }
 
@@ -77,7 +77,7 @@ final class OutputWriter
     public static function writeFileContent($handle, string $fileContent)
     {
         if (!FileUtils::writeString($handle, $fileContent)) {
-            throw new RuntimeException("Unable to write file content to the output file.");
+            throw new RuntimeException('Unable to write file content to the output file.');
         }
     }
 
@@ -93,7 +93,7 @@ final class OutputWriter
     public static function closeHandle($handle)
     {
         if (!FileUtils::closeHandle($handle)) {
-            throw new RuntimeException("Unable to close the output file.");
+            throw new RuntimeException('Unable to close the output file.');
         }
     }
 }
