@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -14,9 +16,6 @@ namespace ClassPreloader\Exceptions;
 
 use Exception;
 
-/**
- * This is the dir constant exception class.
- */
 class DirConstantException extends Exception implements VisitorExceptionInterface
 {
     //

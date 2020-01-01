@@ -14,13 +14,23 @@ declare(strict_types=1);
 
 namespace ClassPreloader\Tests;
 
-use ClassPreloader\CodeGenerator;
+use GrahamCampbell\Analyzer\AnalysisTrait;
 use PHPUnit\Framework\TestCase;
 
-class FactoryTest extends TestCase
+class AnalysisTest extends TestCase
 {
-    public function testCreate()
+    use AnalysisTrait;
+
+    /**
+     * Get the code paths to analyze.
+     *
+     * @return string[]
+     */
+    protected function getPaths()
     {
-        $this->assertInstanceOf(CodeGenerator::class, CodeGenerator::create());
+        return [
+            realpath(__DIR__.'/../src'),
+            realpath(__DIR__),
+        ];
     }
 }

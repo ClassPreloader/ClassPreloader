@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -17,21 +19,21 @@ namespace ClassPreloader;
  *
  * This maintains a list of classes using a sort of doubly-linked list.
  */
-class ClassList
+final class ClassList
 {
     /**
      * The head node of the list.
      *
      * @var \ClassPreloader\ClassNode
      */
-    protected $head;
+    private $head;
 
     /**
      * The current node of the list.
      *
      * @var \ClassPreloader\ClassNode
      */
-    protected $current;
+    private $current;
 
     /**
      * Create a new class list instance.
@@ -75,13 +77,13 @@ class ClassList
      * Any currently set value at this position will be pushed back in the list
      * after the new value.
      *
-     * @param mixed $value
+     * @param string $value
      *
      * @return void
      */
-    public function push($value)
+    public function push(string $value)
     {
-        if (!$this->current->value) {
+        if ($this->current->value === null) {
             $this->current->value = $value;
         } else {
             $temp = $this->current;
@@ -91,6 +93,7 @@ class ClassList
             if ($temp === $this->head) {
                 $this->head = $this->current;
             } else {
+                assert($this->current->prev !== null);
                 $this->current->prev->next = $this->current;
             }
         }
@@ -99,13 +102,13 @@ class ClassList
     /**
      * Traverse the ClassList and return a list of classes.
      *
-     * @return array
+     * @return string[]
      */
     public function getClasses()
     {
         $classes = [];
         $current = $this->head;
-        while ($current && $current->value) {
+        while ($current !== null && $current->value !== null) {
             $classes[] = $current->value;
             $current = $current->next;
         }

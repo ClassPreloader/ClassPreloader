@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -10,8 +12,12 @@
  * file that was distributed with this source code.
  */
 
+namespace ClassPreloader\Tests;
+
+use Bar;
 use ClassPreloader\ClassLoader;
 use ClassPreloader\Config;
+use Foo;
 use PHPUnit\Framework\TestCase;
 
 class ClassLoaderTest extends TestCase

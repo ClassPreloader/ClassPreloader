@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -38,7 +40,7 @@ class FileVisitor extends AbstractNodeVisitor
      *
      * @return void
      */
-    public function __construct($skip = false)
+    public function __construct(bool $skip = false)
     {
         $this->skip = $skip;
     }
@@ -61,5 +63,7 @@ class FileVisitor extends AbstractNodeVisitor
 
             return new StringNode($this->getFilename());
         }
+
+        return null;
     }
 }

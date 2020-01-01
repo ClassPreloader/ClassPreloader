@@ -1,6 +1,20 @@
 <?php
 
-use ClassPreloader\ClassPreloader;
+declare(strict_types=1);
+
+/*
+ * This file is part of Class Preloader.
+ *
+ * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Michael Dowling <mtdowling@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace ClassPreloader\Tests;
+
+use ClassPreloader\CodeGenerator;
 use ClassPreloader\Parser\NodeTraverser;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
@@ -38,7 +52,7 @@ class ClassPreloaderTest extends TestCase
                 file_get_contents(__DIR__.'/stubs/StrictClassWithComments.php')
             );
 
-        $classPreloader = new ClassPreloader(
+        $classPreloader = new CodeGenerator(
             $printerMock,
             $parserMock,
             $traverserMock

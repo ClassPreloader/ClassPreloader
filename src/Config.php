@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -15,26 +17,26 @@ namespace ClassPreloader;
 /**
  * This is the config class.
  */
-class Config
+final class Config
 {
     /**
      * The array of file names.
      *
-     * @var array
+     * @var string[]
      */
     protected $filenames = [];
 
     /**
      * The array of exclusive filters.
      *
-     * @var array
+     * @var string[]
      */
     protected $exclusiveFilters = [];
 
     /**
      * The array of inclusive filters.
      *
-     * @var array
+     * @var string[]
      */
     protected $inclusiveFilters = [];
 
@@ -45,7 +47,7 @@ class Config
      *
      * @return \ClassPreloader\Config
      */
-    public function addFile($filename)
+    public function addFile(string $filename)
     {
         $this->filenames[] = $filename;
 
@@ -55,19 +57,19 @@ class Config
     /**
      * Get an array of file names that satisfy any added filters.
      *
-     * @return array
+     * @return string[]
      */
     public function getFilenames()
     {
         $filenames = [];
         foreach ($this->filenames as $f) {
             foreach ($this->inclusiveFilters as $filter) {
-                if (!preg_match($filter, $f)) {
+                if ((int) @preg_match($filter, $f) === 0) {
                     continue 2;
                 }
             }
             foreach ($this->exclusiveFilters as $filter) {
-                if (preg_match($filter, $f)) {
+                if ((int) @preg_match($filter, $f) > 0) {
                     continue 2;
                 }
             }
@@ -86,7 +88,7 @@ class Config
      *
      * @return \ClassPreloader\Config
      */
-    public function addExclusiveFilter($pattern)
+    public function addExclusiveFilter(string $pattern)
     {
         $this->exclusiveFilters[] = $pattern;
 
@@ -102,7 +104,7 @@ class Config
      *
      * @return \ClassPreloader\Config
      */
-    public function addInclusiveFilter($pattern)
+    public function addInclusiveFilter(string $pattern)
     {
         $this->inclusiveFilters[] = $pattern;
 

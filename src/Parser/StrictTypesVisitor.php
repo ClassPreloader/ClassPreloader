@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Class Preloader.
  *
@@ -37,5 +39,7 @@ class StrictTypesVisitor extends AbstractNodeVisitor
         if ($node instanceof DeclareDeclare && ($node->getLine() === 1 || $node->getLine() === 2)) {
             throw new StrictTypesException();
         }
+
+        return null;
     }
 }
