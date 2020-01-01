@@ -12,15 +12,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Tests;
-
 use ClassPreloader\CodeGenerator;
 use ClassPreloader\Parser\NodeTraverser;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 use PHPUnit\Framework\TestCase;
 
-class ClassPreloaderTest extends TestCase
+class CodeGeneratorTest extends TestCase
 {
     /**
      * This tests the correct detection and stripping of strict_types declarations while preloading files.

@@ -12,10 +12,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader;
+namespace ClassPreloader\ClassLoader;
 
 /**
- * This is the config class.
+ * This is the loader config class.
  */
 final class Config
 {
@@ -39,20 +39,6 @@ final class Config
      * @var string[]
      */
     protected $inclusiveFilters = [];
-
-    /**
-     * Add the filename owned by the config.
-     *
-     * @param string $filename
-     *
-     * @return \ClassPreloader\Config
-     */
-    public function addFile(string $filename)
-    {
-        $this->filenames[] = $filename;
-
-        return $this;
-    }
 
     /**
      * Get an array of file names that satisfy any added filters.
@@ -80,13 +66,27 @@ final class Config
     }
 
     /**
+     * Add the filename owned by the config.
+     *
+     * @param string $filename
+     *
+     * @return $this
+     */
+    public function addFile(string $filename)
+    {
+        $this->filenames[] = $filename;
+
+        return $this;
+    }
+
+    /**
      * Add a filter used to filter out file names matching the pattern.
      *
      * We're filtering the classes using a regular expression.
      *
      * @param string $pattern
      *
-     * @return \ClassPreloader\Config
+     * @return $this
      */
     public function addExclusiveFilter(string $pattern)
     {
@@ -102,7 +102,7 @@ final class Config
      *
      * @param string $pattern Regular expression pattern
      *
-     * @return \ClassPreloader\Config
+     * @return $this
      */
     public function addInclusiveFilter(string $pattern)
     {

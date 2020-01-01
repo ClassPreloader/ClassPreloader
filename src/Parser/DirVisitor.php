@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace ClassPreloader\Parser;
 
-use ClassPreloader\Exceptions\DirConstantException;
+use ClassPreloader\Exception\DirConstantException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\Dir as DirNode;
 use PhpParser\Node\Scalar\String_ as StringNode;
@@ -50,7 +50,7 @@ class DirVisitor extends AbstractNodeVisitor
      *
      * @param \PhpParser\Node $node
      *
-     * @throws \ClassPreloader\Exceptions\DirConstantException
+     * @throws \ClassPreloader\Exception\DirConstantException
      *
      * @return \PhpParser\Node\Scalar\String_|null
      */

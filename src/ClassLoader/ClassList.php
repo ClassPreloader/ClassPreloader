@@ -12,26 +12,28 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader;
+namespace ClassPreloader\ClassLoader;
 
 /**
  * This is the class list class.
  *
  * This maintains a list of classes using a sort of doubly-linked list.
+ *
+ * @internal
  */
 final class ClassList
 {
     /**
      * The head node of the list.
      *
-     * @var \ClassPreloader\ClassNode
+     * @var \ClassPreloader\ClassLoader\ClassNode
      */
     private $head;
 
     /**
      * The current node of the list.
      *
-     * @var \ClassPreloader\ClassNode
+     * @var \ClassPreloader\ClassLoader\ClassNode
      */
     private $current;
 

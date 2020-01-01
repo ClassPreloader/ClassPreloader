@@ -12,11 +12,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Exceptions;
+namespace ClassPreloader\Exception;
 
-use Exception;
-
-class DirConstantException extends Exception implements VisitorExceptionInterface
+interface VisitorExceptionInterface
 {
     //
 }

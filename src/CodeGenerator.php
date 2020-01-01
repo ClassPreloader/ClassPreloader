@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace ClassPreloader;
 
+use ClassPreloader\Exception\IOException;
+use ClassPreloader\File\FileUtils;
 use ClassPreloader\Parser\DirVisitor;
 use ClassPreloader\Parser\FileVisitor;
 use ClassPreloader\Parser\NodeTraverser;
@@ -22,7 +24,6 @@ use PhpParser\Node\Stmt\Namespace_ as NamespaceNode;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
-use RuntimeException;
 
 /**
  * This is the code generator class.
@@ -74,7 +75,7 @@ final class CodeGenerator
      * @param bool[]                 $options
      * @param \PhpParser\Parser|null $parser
      *
-     * @return \ClassPreloader\CodeGenerator
+     * @return self
      */
     public static function create(array $options = [], Parser $parser = null)
     {
@@ -134,7 +135,8 @@ final class CodeGenerator
      * @param string $filePath
      * @param bool   $withComments
      *
-     * @throws \RuntimeException
+     * @throws \ClassPreloader\Exception\IOException
+     * @throws \PhpParser\Error
      *
      * @return string
      */
@@ -143,7 +145,7 @@ final class CodeGenerator
         $content = FileUtils::readPhpFile($filePath, $withComments);
 
         if ($content === false) {
-            throw new RuntimeException("Cannot open $filePath for reading.");
+            throw new IOException("Cannot open $filePath for reading.");
         }
 
         $parsed = $this->parser->parse($content);
@@ -168,17 +170,13 @@ final class CodeGenerator
      * @param string   $subject
      * @param int|null $limit
      *
-     * @throws \RuntimeException
-     *
      * @return string
      */
     private static function pregReplace(string $pattern, string $replacement, string $subject, int $limit = null)
     {
         $output = @preg_replace($pattern, $replacement, $subject, $limit === null ? -1 : $limit);
 
-        if ($output === null) {
-            throw new RuntimeException('PREG failed!');
-        }
+        assert($output !== null);
 
         return $output;
     }

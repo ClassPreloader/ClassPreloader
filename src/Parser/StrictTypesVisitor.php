@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace ClassPreloader\Parser;
 
-use ClassPreloader\Exceptions\StrictTypesException;
+use ClassPreloader\Exception\StrictTypesException;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\DeclareDeclare;
 
@@ -30,7 +30,7 @@ class StrictTypesVisitor extends AbstractNodeVisitor
      *
      * @param \PhpParser\Node $node
      *
-     * @throws \ClassPreloader\Exceptions\StrictTypesException
+     * @throws \ClassPreloader\Exception\StrictTypesException
      *
      * @return null
      */

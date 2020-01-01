@@ -14,7 +14,8 @@ declare(strict_types=1);
 
 namespace ClassPreloader;
 
-use RuntimeException;
+use ClassPreloader\Exception\IOException;
+use ClassPreloader\File\FileUtils;
 
 /**
  * This is the output writer.
@@ -26,7 +27,7 @@ final class OutputWriter
      *
      * @param string $filePath
      *
-     * @throws \RuntimeException
+     * @throws \ClassPreloader\Exception\IOException
      *
      * @return resource
      */
@@ -35,13 +36,13 @@ final class OutputWriter
         $dirPath = dirname($filePath);
 
         if (!FileUtils::ensureDirectoryExists($dirPath)) {
-            throw new RuntimeException("Unable to create directory $dirPath.");
+            throw new IOException("Unable to create directory $dirPath.");
         }
 
         $handle = FileUtils::openFileForWriting($filePath);
 
         if ($handle === false) {
-            throw new RuntimeException("Unable to open $filePath for writing.");
+            throw new IOException("Unable to open $filePath for writing.");
         }
 
         return $handle;
@@ -53,14 +54,14 @@ final class OutputWriter
      * @param resource $handle
      * @param bool     $strictTypes
      *
-     * @throws \RuntimeException
+     * @throws \ClassPreloader\Exception\IOException
      *
      * @return void
      */
     public static function writeOpeningTag($handle, bool $strictTypes)
     {
         if (!FileUtils::writeString($handle, $strictTypes ? "<?php declare(strict_types=1);\n" : "<?php\n")) {
-            throw new RuntimeException('Unable to write opening tag to the output file.');
+            throw new IOException('Unable to write opening tag to the output file.');
         }
     }
 
@@ -70,14 +71,14 @@ final class OutputWriter
      * @param resource $handle
      * @param string   $fileContent
      *
-     * @throws \RuntimeException
+     * @throws \ClassPreloader\Exception\IOException
      *
      * @return void
      */
     public static function writeFileContent($handle, string $fileContent)
     {
         if (!FileUtils::writeString($handle, $fileContent)) {
-            throw new RuntimeException('Unable to write file content to the output file.');
+            throw new IOException('Unable to write file content to the output file.');
         }
     }
 
@@ -86,14 +87,14 @@ final class OutputWriter
      *
      * @param resource $handle
      *
-     * @throws \RuntimeException
+     * @throws \ClassPreloader\Exception\IOException
      *
      * @return void
      */
     public static function closeHandle($handle)
     {
         if (!FileUtils::closeHandle($handle)) {
-            throw new RuntimeException('Unable to close the output file.');
+            throw new IOException('Unable to close the output file.');
         }
     }
 }

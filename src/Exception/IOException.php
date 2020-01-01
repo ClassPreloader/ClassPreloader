@@ -12,11 +12,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Exceptions;
+namespace ClassPreloader\Exception;
 
-use Exception;
+use RuntimeException;
 
-class StrictTypesException extends Exception implements VisitorExceptionInterface
+class IOException extends RuntimeException
 {
     //
 }

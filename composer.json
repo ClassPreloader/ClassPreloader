@@ -29,9 +29,6 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "ClassPreloader\\Tests\\": "tests/"
-        },
         "classmap": ["tests/stubs/"]
     },
     "config": {

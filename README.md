@@ -27,7 +27,7 @@ Using the tool
 
 You use the `./vendor/bin/classpreloader` compile command with a few command line flags to generate a preloader.
 
-`--config`: A CSV containing a list of files to combine into a classmap, or the full path to a PHP script that returns an array of classes or a `ClassPreloader\Config` object.
+`--config`: A CSV containing a list of files to combine into a classmap, or the full path to a PHP script that returns an array of classes or a `ClassPreloader\ClassLoader\Config` object.
 
 `--output`: The path to the file to store the compiled PHP code. If the directory does not exist, the tool will attempt to create it.
 
@@ -46,7 +46,7 @@ Writing a config file
 
 Creating a PHP based configuration file is fairly simple. Just include the `vendor/classpreloader/classpreloader/src/ClassLoader.php` file and call the `ClassPreloader\ClassLoader::getIncludes()` method, passing a function as the only  argument. This function should accept a `ClassPreloader\ClassLoader` object and register the passed in object's autoloader using `$loader->register()`. It is important to register the `ClassPreloader\ClassLoader` autoloader after all other autoloaders are registered.
 
-An array or `ClassPreloader\Config` must be returned from the config file. You can attach custom node visitors if you need to perform any sort of translation on each matching file before writing it to the output.
+An array or `ClassPreloader\ClassLoader\Config` must be returned from the config file. You can attach custom node visitors if you need to perform any sort of translation on each matching file before writing it to the output.
 
 ```php
 <?php

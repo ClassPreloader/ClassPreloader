@@ -12,7 +12,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader;
+namespace ClassPreloader\ClassLoader;
 
 /**
  * This is the class node class.
@@ -26,14 +26,14 @@ final class ClassNode
     /**
      * The next node pointer.
      *
-     * @var \ClassPreloader\ClassNode|null
+     * @var self|null
      */
     public $next;
 
     /**
      * The previous node pointer.
      *
-     * @var \ClassPreloader\ClassNode|null
+     * @var self|null
      */
     public $prev;
 
@@ -47,8 +47,8 @@ final class ClassNode
     /**
      * Create a new class node instance.
      *
-     * @param string|null                    $value
-     * @param \ClassPreloader\ClassNode|null $prev
+     * @param string|null $value
+     * @param self|null   $prev
      *
      * @return void
      */

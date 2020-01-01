@@ -12,12 +12,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ClassPreloader\Tests;
-
-use Bar;
 use ClassPreloader\ClassLoader;
-use ClassPreloader\Config;
-use Foo;
+use ClassPreloader\ClassLoader\Config;
 use PHPUnit\Framework\TestCase;
 
 class ClassLoaderTest extends TestCase

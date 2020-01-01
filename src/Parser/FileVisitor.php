@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace ClassPreloader\Parser;
 
-use ClassPreloader\Exceptions\FileConstantException;
+use ClassPreloader\Exception\FileConstantException;
 use PhpParser\Node;
 use PhpParser\Node\Scalar\MagicConst\File as FileNode;
 use PhpParser\Node\Scalar\String_ as StringNode;
@@ -50,7 +50,7 @@ class FileVisitor extends AbstractNodeVisitor
      *
      * @param \PhpParser\Node $node
      *
-     * @throws \ClassPreloader\Exceptions\FileConstantException
+     * @throws \ClassPreloader\Exception\FileConstantException
      *
      * @return \PhpParser\Node\Scalar\String_|null
      */

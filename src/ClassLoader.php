@@ -14,6 +14,9 @@ declare(strict_types=1);
 
 namespace ClassPreloader;
 
+use ClassPreloader\ClassLoader\ClassList;
+use ClassPreloader\ClassLoader\Config;
+
 /**
  * This is the class loader class.
  *
@@ -26,7 +29,7 @@ final class ClassLoader
     /**
      * The list of loaded classes.
      *
-     * @var \ClassPreloader\ClassList
+     * @var \ClassPreloader\ClassLoader\ClassList
      */
     public $classList;
 
@@ -57,7 +60,7 @@ final class ClassLoader
      *
      * @param callable $func
      *
-     * @return \ClassPreloader\Config
+     * @return \ClassPreloader\ClassLoader\Config
      */
     public static function getIncludes(callable $func)
     {

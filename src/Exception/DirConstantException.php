@@ -12,13 +12,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use ClassPreloader\CodeGenerator;
-use PHPUnit\Framework\TestCase;
+namespace ClassPreloader\Exception;
 
-class FactoryTest extends TestCase
+use Exception;
+
+class DirConstantException extends Exception implements VisitorExceptionInterface
 {
-    public function testCreate()
-    {
-        $this->assertInstanceOf(CodeGenerator::class, CodeGenerator::create());
-    }
+    //
 }
