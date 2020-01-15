@@ -24,7 +24,7 @@ final class FileUtils
     /**
      * Read a PHP file.
      *
-     * Returns the content as a string, or null on failure.
+     * Returns the content as a string, or false on failure.
      *
      * @param string $filePath
      * @param bool   $withComments
