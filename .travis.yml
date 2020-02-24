@@ -41,19 +41,21 @@ matrix:
     - php: 7.2
       env: PARSER_VERSION=^3.0
       dist: xenial
-    - php: hhvm
+    - php: 7.3
+      env: PARSER_VERSION=^3.0
+      dist: xenial
+    - php: hhvm-3.18
       env: PARSER_VERSION=^1.0
       dist: trusty
-    - php: hhvm
+    - php: hhvm-3.18
       env: PARSER_VERSION=^2.0
       dist: trusty
-    - php: hhvm
+    - php: hhvm-3.18
       env: PARSER_VERSION=^3.0
       dist: trusty
 
 before_install:
-  - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then echo 'hhvm.jit = false' >> /etc/hhvm/php.ini ; fi
-  - composer self-update --stable -n
+  - if [[ $TRAVIS_PHP_VERSION = "hhvm-3.18" ]]; then echo 'hhvm.jit = false' >> /etc/hhvm/php.ini ; fi
   - composer require "nikic/php-parser:${PARSER_VERSION}" --no-update -n
 
 install: travis_retry composer install --no-suggest --prefer-dist -n -o
