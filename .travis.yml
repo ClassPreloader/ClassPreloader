@@ -58,6 +58,6 @@ before_install:
   - if [[ $TRAVIS_PHP_VERSION = "hhvm-3.18" ]]; then echo 'hhvm.jit = false' >> /etc/hhvm/php.ini ; fi
   - composer require "nikic/php-parser:${PARSER_VERSION}" --no-update -n
 
-install: travis_retry composer install --no-suggest --prefer-dist -n -o
+install: travis_retry composer install --prefer-dist -n -o
 
 script: vendor/bin/phpunit
