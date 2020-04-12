@@ -105,3 +105,10 @@ You can automate the process of creating preloaders using Composer's script func
 ```
 
 Using the above composer.json file, each time the project's autoloader is recreated using the install or update command, the classpreloader.php file will be executed. This script would generate a preload.php containing the classes required to run the previously demonstrated "the_example.php" configuration file.
+
+For Enterprise
+--------------
+
+Available as part of the Tidelift Subscription
+
+The maintainers of `classpreloader/classpreloader` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/packagist-classpreloader-classpreloader?utm_source=packagist-classpreloader-classpreloader&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
