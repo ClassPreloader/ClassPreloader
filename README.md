@@ -114,21 +114,14 @@ Security
 
 If you discover a security vulnerability within this package, please send an email to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/ClassPreloader/ClassPreloader/security/policy).
 
-
 License
 -------
 
 Class Preloader is licensed under [The MIT License (MIT)](LICENSE).
 
+For Enterprise
+--------------
 
----
+Available as part of the Tidelift Subscription
 
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/packagist-classpreloader-classpreloader?utm_source=packagist-classpreloader-classpreloader&utm_medium=referral&utm_campaign=readme">Get professional support for Class Preloader with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>
+The maintainers of `classpreloader/classpreloader` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/packagist-classpreloader-classpreloader?utm_source=packagist-classpreloader-classpreloader&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
