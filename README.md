@@ -20,7 +20,7 @@ This tool should only be used for specific use cases. There is a tradeoff betwee
 Installation
 ------------
 
-Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^4.0"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^3.0"` to the require block.
+Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^4.1"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^3.1"` to the require block.
 
 Using the tool
 --------------
