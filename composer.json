@@ -10,7 +10,7 @@
         },
         {
             "name": "Graham Campbell",
-            "email": "graham@alt-three.com"
+            "email": "hello@gjcampbell.co.uk"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4.1",
-        "phpunit/phpunit": "^6.5.14 || ^7.5.20 || ^8.5.13",
+        "phpunit/phpunit": "^6.5.14 || ^7.5.20 || ^8.5.19",
         "graham-campbell/analyzer": "^2.4.3 || ^3.0.4"
     },
     "autoload": {
