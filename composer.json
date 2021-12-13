@@ -32,6 +32,9 @@
         "classmap": ["tests/stubs/"]
     },
     "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        },
         "preferred-install": "dist"
     },
     "minimum-stability": "dev",
