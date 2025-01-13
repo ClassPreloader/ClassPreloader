@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Class Preloader.
  *
- * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Graham Campbell <hello@gjcampbell.co.uk>
  * (c) Michael Dowling <mtdowling@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -77,7 +77,7 @@ final class CodeGenerator
      *
      * @return self
      */
-    public static function create(array $options = [], Parser $parser = null)
+    public static function create(array $options = [], ?Parser $parser = null)
     {
         $printer = new PrettyPrinter();
 
@@ -97,7 +97,7 @@ final class CodeGenerator
      */
     private static function getParser()
     {
-        return (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+        return (new ParserFactory())->createForNewestSupportedVersion();
     }
 
     /**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Class Preloader.
  *
- * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Graham Campbell <hello@gjcampbell.co.uk>
  * (c) Michael Dowling <mtdowling@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -30,7 +30,7 @@ class CodeGeneratorTest extends TestCase
             ->setMethods(['prettyPrint']);
         $parser = $this->getMockBuilder(Parser::class)
             ->disableOriginalConstructor()
-            ->setMethods(['parse', 'getErrors']);
+            ->setMethods(['parse', 'getErrors', 'getTokens']);
         $traverser = $this->getMockBuilder(NodeTraverser::class)
             ->disableOriginalConstructor()
             ->setMethods(['traverseFile']);
@@ -59,7 +59,16 @@ class CodeGeneratorTest extends TestCase
         $code = $classPreloader->getCode(__DIR__.'/stubs/StrictClassWithComments.php');
 
         // $code should not have 'declare(strict_types=1)' declarations.
-        $this->assertNotRegExp(
+        self::assertDoesNotHaveStrictTypes($code);
+    }
+
+    private static function assertDoesNotHaveStrictTypes(string $code): void
+    {
+        $method = method_exists(TestCase::class, 'assertDoesNotMatchRegularExpression')
+            ? 'assertDoesNotMatchRegularExpression'
+            : 'assertNotRegExp';
+
+        self::{$method}(
             '/(.*?)declare\s*\(strict_types\s*=\s*1\)(.*?)/mi',
             $code,
             'Generated ClassPreloader output should correctly detect and strip strict_type declare statements.'

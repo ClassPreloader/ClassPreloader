@@ -20,7 +20,7 @@ This tool should only be used for specific use cases. There is a tradeoff betwee
 Installation
 ------------
 
-Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^4.1"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^3.1"` to the require block.
+Add ClassPreloader as a dependency to your composer.json file by adding `"classpreloader/classpreloader": "^4.3"` to your require block. Note that if you want to use the cli tool, then you need to also add `"classpreloader/console": "^3.3"` to the require block.
 
 Using the tool
 --------------
@@ -112,7 +112,7 @@ Using the above composer.json file, each time the project's autoloader is recrea
 Security
 --------
 
-If you discover a security vulnerability within this package, please send an email to Graham Campbell at graham@alt-three.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/ClassPreloader/ClassPreloader/security/policy).
+If you discover a security vulnerability within this package, please send an email to security@tidelift.com. All security vulnerabilities will be promptly addressed. You may view our full security policy [here](https://github.com/ClassPreloader/ClassPreloader/security/policy).
 
 License
 -------

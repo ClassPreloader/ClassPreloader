@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Class Preloader.
  *
- * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Graham Campbell <hello@gjcampbell.co.uk>
  * (c) Michael Dowling <mtdowling@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -52,7 +52,7 @@ final class ClassNode
      *
      * @return void
      */
-    public function __construct(string $value = null, self $prev = null)
+    public function __construct(?string $value = null, ?self $prev = null)
     {
         $this->value = $value;
         $this->prev = $prev;

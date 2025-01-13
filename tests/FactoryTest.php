@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Class Preloader.
  *
- * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Graham Campbell <hello@gjcampbell.co.uk>
  * (c) Michael Dowling <mtdowling@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,6 +19,6 @@ class FactoryTest extends TestCase
 {
     public function testCreate()
     {
-        $this->assertInstanceOf(CodeGenerator::class, CodeGenerator::create());
+        self::assertInstanceOf(CodeGenerator::class, CodeGenerator::create());
     }
 }

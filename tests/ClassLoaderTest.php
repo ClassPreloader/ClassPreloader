@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Class Preloader.
  *
- * (c) Graham Campbell <graham@alt-three.com>
+ * (c) Graham Campbell <hello@gjcampbell.co.uk>
  * (c) Michael Dowling <mtdowling@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -29,8 +29,8 @@ class ClassLoaderTest extends TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
         ];
 
-        $this->assertInstanceOf(Config::class, $config);
-        $this->assertSame($expected, $config->getFilenames());
+        self::assertInstanceOf(Config::class, $config);
+        self::assertSame($expected, $config->getFilenames());
     }
 
     /**
@@ -48,8 +48,8 @@ class ClassLoaderTest extends TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
         ];
 
-        $this->assertInstanceOf(Config::class, $config);
-        $this->assertSame($expected, $config->getFilenames());
+        self::assertInstanceOf(Config::class, $config);
+        self::assertSame($expected, $config->getFilenames());
     }
 
     public function testGetIncludesFailed()
@@ -59,7 +59,7 @@ class ClassLoaderTest extends TestCase
             new Foo();
         });
 
-        $this->assertEmpty($config->getFilenames());
+        self::assertEmpty($config->getFilenames());
     }
 
     public function testLoadOneClass()
@@ -73,7 +73,7 @@ class ClassLoaderTest extends TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
         ];
 
-        $this->assertSame($expected, $loader->getFilenames());
+        self::assertSame($expected, $loader->getFilenames());
     }
 
     /**
@@ -91,15 +91,15 @@ class ClassLoaderTest extends TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
         ];
 
-        $this->assertSame($expected, $loader->getFilenames());
+        self::assertSame($expected, $loader->getFilenames());
 
         // now we've loaded phpunit classes, and we haven't unregistered yet
 
         $files = $loader->getFilenames();
 
-        $this->assertContains($expected[0], $files);
-        $this->assertContains($expected[1], $files);
-        $this->assertNotSame($expected, $loader->getFilenames());
+        self::assertContains($expected[0], $files);
+        self::assertContains($expected[1], $files);
+        self::assertNotSame($expected, $loader->getFilenames());
     }
 
     public function testLoadManyClassesWithoutLoader()
@@ -112,7 +112,7 @@ class ClassLoaderTest extends TestCase
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
         ];
 
-        $this->assertSame($expected, $loader->getFilenames());
+        self::assertSame($expected, $loader->getFilenames());
     }
 
     /**
@@ -128,13 +128,13 @@ class ClassLoaderTest extends TestCase
 
         $loader->unregister();
 
-        $this->assertTrue(true); // force load in phpunit classes
+        self::assertTrue(true); // force load in phpunit classes
 
         $expected = [
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Bar.php',
             __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'Foo.php',
         ];
 
-        $this->assertSame($expected, $loader->getFilenames()); // phpunit classes not present
+        self::assertSame($expected, $loader->getFilenames()); // phpunit classes not present
     }
 }
