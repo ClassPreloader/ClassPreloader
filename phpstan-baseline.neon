@@ -4,3 +4,8 @@ parameters:
 			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
 			count: 1
 			path: src/ClassLoader.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between array\\<int, callable\\(string\\)\\: bool\\> and false will always evaluate to true\\.$#"
+			count: 1
+			path: src/ClassLoader.php

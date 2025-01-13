@@ -107,6 +107,7 @@ final class ClassLoader
      */
     public function loadClass(string $class)
     {
+        /** @var list<callable(string): bool> */
         $funcs = spl_autoload_functions();
 
         if ($funcs !== false) {

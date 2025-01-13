@@ -4,4 +4,5 @@ parameters:
         - src
 
 includes:
+    - vendor-bin/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
     - phpstan-baseline.neon
