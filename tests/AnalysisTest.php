@@ -15,8 +15,6 @@ declare(strict_types=1);
 use GrahamCampbell\Analyzer\AnalysisTrait;
 use PHPUnit\Framework\TestCase;
 
-var_dump((new ReflectionClass(AnalysisTrait::class))->getMethod('getPaths')->isStatic());
-
 if ((new ReflectionClass(AnalysisTrait::class))->getMethod('getPaths')->isStatic()) {
     class AnalysisTest extends TestCase
     {
