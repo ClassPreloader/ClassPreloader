@@ -172,7 +172,7 @@ final class CodeGenerator
      *
      * @return string
      */
-    private static function pregReplace(string $pattern, string $replacement, string $subject, int $limit = null)
+    private static function pregReplace(string $pattern, string $replacement, string $subject, ?int $limit = null)
     {
         $output = @preg_replace($pattern, $replacement, $subject, $limit === null ? -1 : $limit);
 
